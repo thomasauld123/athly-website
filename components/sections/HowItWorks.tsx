@@ -50,7 +50,8 @@ export function HowItWorks() {
           subtitle="Three steps. One plan. Real guidance."
         />
 
-        <div className="grid lg:grid-cols-[1fr,auto] gap-12 lg:gap-16 items-start mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+          {/* Left: steps */}
           <div className="space-y-10">
             {steps.map((step, i) => (
               <Reveal key={step.number} delay={i * 0.1}>
@@ -73,9 +74,12 @@ export function HowItWorks() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center justify-center">
-            <GlassCardStack cards={stackCards} />
-          </div>
+          {/* Right: floating notification cards */}
+          <Reveal delay={0.2} direction="right">
+            <div className="flex justify-center lg:justify-end">
+              <GlassCardStack cards={stackCards} />
+            </div>
+          </Reveal>
         </div>
 
         <Separator className="mb-12" />

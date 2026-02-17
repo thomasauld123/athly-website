@@ -3,9 +3,14 @@
 import { Header } from '@/components/sections/Header'
 import { Hero } from '@/components/sections/Hero'
 import { LogoMarquee } from '@/components/LogoMarquee'
+import { ProofStrip } from '@/components/sections/ProofStrip'
 import { SocialProof } from '@/components/sections/SocialProof'
+import { Comparison } from '@/components/sections/Comparison'
 import { HowItWorks } from '@/components/sections/HowItWorks'
+import { WeekTimeline } from '@/components/sections/WeekTimeline'
 import { RosterMarquee } from '@/components/roster/RosterMarquee'
+import { AthleteEndorsements } from '@/components/sections/AthleteEndorsements'
+import { SportTeaser } from '@/components/sections/SportTeaser'
 import { ComingSoon } from '@/components/sections/ComingSoon'
 import { Waitlist } from '@/components/sections/Waitlist'
 import { Footer } from '@/components/sections/Footer'
@@ -19,12 +24,20 @@ export default function Home() {
       <Header />
       <Hero />
       <LogoMarquee />
+      <ProofStrip />
       <SectionDivider />
       <SocialProof />
       <SectionDivider />
+      <Comparison />
+      <SectionDivider />
       <HowItWorks />
       <SectionDivider />
+      <WeekTimeline />
+      <SectionDivider />
       <RosterMarquee />
+      <SectionDivider />
+      <AthleteEndorsements />
+      <SportTeaser />
       <SectionDivider />
       <ComingSoon />
       <SectionDivider />

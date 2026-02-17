@@ -7,18 +7,18 @@ import { Reveal } from '@/components/visual/Reveal'
 import { RosterCard } from './RosterCard'
 
 const athletes = [
-  { sport: 'AFL', teaser: 'Speed and agility under fatigue', gradient: 'from-emerald-600 to-teal-800', tier: 'Headline athlete' },
-  { sport: 'Cricket', teaser: 'Match-day prep and recovery', gradient: 'from-sky-600 to-blue-800', tier: 'Headline athlete' },
-  { sport: 'NRL', teaser: 'Strength under contact', gradient: 'from-amber-600 to-orange-800', tier: 'Launch athlete' },
-  { sport: 'Football', teaser: 'Skill under pressure', gradient: 'from-rose-600 to-pink-800', tier: 'Headline athlete' },
-  { sport: 'Olympics', teaser: 'Peak performance cycles', gradient: 'from-indigo-600 to-violet-800', tier: 'Launch athlete' },
-  { sport: 'Surf', teaser: 'Functional mobility and power', gradient: 'from-cyan-600 to-teal-800', tier: 'Launch athlete' },
-  { sport: 'Basketball', teaser: 'Explosive vertical training', gradient: 'from-orange-600 to-red-800', tier: 'Headline athlete' },
-  { sport: 'Netball', teaser: 'Lateral movement and court speed', gradient: 'from-pink-600 to-rose-800', tier: 'Launch athlete' },
-  { sport: 'Tennis', teaser: 'Rotational power and endurance', gradient: 'from-lime-600 to-green-800', tier: 'Launch athlete' },
-  { sport: 'Rugby', teaser: 'Contact conditioning', gradient: 'from-yellow-600 to-amber-800', tier: 'Headline athlete' },
-  { sport: 'Swimming', teaser: 'Aerobic base and turn speed', gradient: 'from-blue-600 to-indigo-800', tier: 'Launch athlete' },
-  { sport: 'Athletics', teaser: 'Sprint mechanics and power', gradient: 'from-red-600 to-rose-800', tier: 'Launch athlete' },
+  { sport: 'AFL', gradient: 'from-emerald-600 to-teal-800' },
+  { sport: 'Cricket', gradient: 'from-sky-600 to-blue-800' },
+  { sport: 'NRL', gradient: 'from-amber-600 to-orange-800' },
+  { sport: 'Football', gradient: 'from-rose-600 to-pink-800' },
+  { sport: 'Olympics', gradient: 'from-indigo-600 to-violet-800' },
+  { sport: 'Surf', gradient: 'from-cyan-600 to-teal-800' },
+  { sport: 'Basketball', gradient: 'from-orange-600 to-red-800' },
+  { sport: 'Netball', gradient: 'from-pink-600 to-rose-800' },
+  { sport: 'Tennis', gradient: 'from-lime-600 to-green-800' },
+  { sport: 'Rugby', gradient: 'from-yellow-600 to-amber-800' },
+  { sport: 'Swimming', gradient: 'from-blue-600 to-indigo-800' },
+  { sport: 'Athletics', gradient: 'from-red-600 to-rose-800' },
 ]
 
 const row1 = athletes.slice(0, 6)
