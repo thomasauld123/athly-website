@@ -1,24 +1,30 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const logos = [
-  { name: 'AFL', width: 'w-12' },
-  { name: 'NRL', width: 'w-12' },
-  { name: 'Cricket Australia', width: 'w-28' },
-  { name: 'Football Australia', width: 'w-32' },
-  { name: 'Surfing Australia', width: 'w-28' },
-  { name: 'Olympics', width: 'w-16' },
-  { name: 'NBL', width: 'w-12' },
-  { name: 'A-League', width: 'w-16' },
+  { name: 'Logo 1', src: '/LOGO 1.svg' },
+  { name: 'Logo 2', src: '/LOGO 2.png' },
+  { name: 'Logo 3', src: '/LOGO 3.png' },
+  { name: 'Logo 4', src: '/LOGO 4.png' },
+  { name: 'Logo 5', src: '/LOGO 5.png' },
+  { name: 'Logo 6', src: '/LOGO 6.jpg' },
+  { name: 'Logo 7', src: '/LOGO 7.jpg' },
+  { name: 'Logo 8', src: '/LOGO 8.svg' },
 ]
 
-function LogoItem({ name }: { name: string }) {
+function LogoItem({ name, src }: { name: string; src: string }) {
   return (
-    <div className="flex items-center justify-center px-8 h-10 flex-shrink-0 opacity-40 hover:opacity-70 transition-opacity duration-300 cursor-default">
-      <span className="font-[family-name:var(--font-display)] text-sm font-semibold tracking-wide text-white whitespace-nowrap">
-        {name}
-      </span>
+    <div className="flex items-center justify-center px-8 h-12 flex-shrink-0 opacity-40 hover:opacity-70 transition-opacity duration-300 cursor-default">
+      <Image
+        src={src}
+        alt={name}
+        width={120}
+        height={48}
+        className="h-8 w-auto object-contain brightness-0 invert"
+        draggable={false}
+      />
     </div>
   )
 }
@@ -49,19 +55,19 @@ export function LogoMarquee() {
           {/* First copy */}
           <div className="flex flex-shrink-0">
             {logos.map((logo, i) => (
-              <LogoItem key={`a-${i}`} name={logo.name} />
+              <LogoItem key={`a-${i}`} name={logo.name} src={logo.src} />
             ))}
           </div>
           {/* Duplicate for seamless loop */}
           <div className="flex flex-shrink-0">
             {logos.map((logo, i) => (
-              <LogoItem key={`b-${i}`} name={logo.name} />
+              <LogoItem key={`b-${i}`} name={logo.name} src={logo.src} />
             ))}
           </div>
           {/* Third copy for extra safety */}
           <div className="flex flex-shrink-0">
             {logos.map((logo, i) => (
-              <LogoItem key={`c-${i}`} name={logo.name} />
+              <LogoItem key={`c-${i}`} name={logo.name} src={logo.src} />
             ))}
           </div>
         </div>
