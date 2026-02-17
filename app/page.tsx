@@ -2,6 +2,7 @@
 
 import { Header } from '@/components/sections/Header'
 import { Hero } from '@/components/sections/Hero'
+import { LogoMarquee } from '@/components/LogoMarquee'
 import { SocialProof } from '@/components/sections/SocialProof'
 import { HowItWorks } from '@/components/sections/HowItWorks'
 import { FeaturedAthletes } from '@/components/sections/FeaturedAthletes'
@@ -14,6 +15,7 @@ export default function Home() {
     <>
       <Header />
       <Hero />
+      <LogoMarquee />
       <SocialProof />
       <HowItWorks />
       <FeaturedAthletes />

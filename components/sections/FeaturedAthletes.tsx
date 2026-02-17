@@ -5,32 +5,41 @@ import { Lock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
 const athletes = [
-  { sport: 'AFL', teaser: 'Speed and agility block', gradient: 'from-violet-600 to-indigo-800' },
-  { sport: 'Cricket', teaser: 'Match-day prep and recovery', gradient: 'from-blue-600 to-cyan-800' },
-  { sport: 'NRL', teaser: 'Strength under fatigue', gradient: 'from-emerald-600 to-teal-800' },
-  { sport: 'Football', teaser: 'Skill under pressure', gradient: 'from-amber-600 to-orange-800' },
-  { sport: 'Olympics', teaser: 'Peak performance cycles', gradient: 'from-rose-600 to-pink-800' },
-  { sport: 'Surf', teaser: 'Functional mobility and power', gradient: 'from-sky-600 to-blue-800' },
+  { sport: 'AFL', teaser: 'Speed and agility block', gradient: 'from-violet-600 to-indigo-800', tier: 'Headline athlete' },
+  { sport: 'Cricket', teaser: 'Match-day prep and recovery', gradient: 'from-blue-600 to-cyan-800', tier: 'Headline athlete' },
+  { sport: 'NRL', teaser: 'Strength under fatigue', gradient: 'from-emerald-600 to-teal-800', tier: 'Launch athlete' },
+  { sport: 'Football', teaser: 'Skill under pressure', gradient: 'from-amber-600 to-orange-800', tier: 'Headline athlete' },
+  { sport: 'Olympics', teaser: 'Peak performance cycles', gradient: 'from-rose-600 to-pink-800', tier: 'Launch athlete' },
+  { sport: 'Surf', teaser: 'Functional mobility and power', gradient: 'from-sky-600 to-blue-800', tier: 'Launch athlete' },
 ]
 
-function AthleteCard({ sport, teaser, gradient }: typeof athletes[0]) {
+function AthleteCard({ sport, teaser, gradient, tier }: typeof athletes[0]) {
   return (
     <motion.div
       whileHover={{ y: -3, transition: { duration: 0.2 } }}
       className="glass rounded-2xl p-5 transition-all duration-300 group cursor-default glass-hover"
     >
-      {/* Avatar placeholder */}
-      <div
-        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} mb-4 flex items-center justify-center relative overflow-hidden`}
-      >
-        {/* Noise texture on avatar */}
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundSize: '64px 64px',
-          }}
-        />
+      {/* Tier label */}
+      <p className="text-[10px] font-medium uppercase tracking-widest text-violet-400/60 mb-3">
+        {tier}
+      </p>
+
+      {/* Premium avatar with highlight ring */}
+      <div className="relative w-16 h-16 mb-4">
+        {/* Outer highlight ring */}
+        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${gradient} opacity-30 blur-md`} />
+        <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden ring-1 ring-white/15`}>
+          {/* Inner highlight */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/15 to-transparent h-1/2" />
+          {/* Noise texture on avatar */}
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+              backgroundSize: '64px 64px',
+            }}
+          />
+        </div>
       </div>
 
       {/* Redacted name */}

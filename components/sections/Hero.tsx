@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { scrollToSection } from '@/lib/scroll'
+import { PhoneMockups } from '@/components/PhoneMockups'
+import { CalendarCheck, MessageCircle, Phone } from 'lucide-react'
 
 function LiquidGlassBlob() {
   return (
@@ -29,6 +31,11 @@ function LiquidGlassBlob() {
           />
           <feGaussianBlur stdDeviation="20" />
         </filter>
+        <radialGradient id="blob-gradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(139, 92, 246, 0.4)" />
+          <stop offset="50%" stopColor="rgba(79, 70, 229, 0.2)" />
+          <stop offset="100%" stopColor="rgba(30, 27, 75, 0)" />
+        </radialGradient>
       </defs>
       <ellipse
         cx="400"
@@ -38,13 +45,6 @@ function LiquidGlassBlob() {
         fill="url(#blob-gradient)"
         filter="url(#liquid-glass)"
       />
-      <defs>
-        <radialGradient id="blob-gradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(139, 92, 246, 0.4)" />
-          <stop offset="50%" stopColor="rgba(79, 70, 229, 0.2)" />
-          <stop offset="100%" stopColor="rgba(30, 27, 75, 0)" />
-        </radialGradient>
-      </defs>
     </svg>
   )
 }
@@ -71,67 +71,95 @@ function GradientOrbs() {
   )
 }
 
+const bullets = [
+  { icon: CalendarCheck, label: 'One consolidated weekly plan' },
+  { icon: MessageCircle, label: 'Athlete-guided adjustments' },
+  { icon: Phone, label: 'Messaging + calling' },
+]
+
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background effects */}
       <LiquidGlassBlob />
       <GradientOrbs />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center pt-24 pb-16">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-white/40 mb-6"
-        >
-          Athly
-        </motion.p>
+      <div className="relative z-10 mx-auto max-w-6xl px-6 w-full pt-24 pb-16">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left: copy */}
+          <div>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight leading-[1.08] mb-5"
+            >
+              Personal coaching from your favourite athlete.
+            </motion.h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08] mb-6"
-        >
-          One plan you&apos;ll actually follow
-          <span className="text-white/40"> — shaped by the athletes you trust.</span>
-        </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg text-white/50 max-w-md mb-8 leading-relaxed"
+            >
+              Chat to the world&apos;s best athletes for direct guidance.
+            </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-lg text-white/50 max-w-xl mx-auto mb-10 leading-relaxed"
-        >
-          Stop piecing together random programs and generic advice.
-          Athly gives you a single, personalised plan built around the methodology
-          of athletes who&apos;ve done what you&apos;re trying to do.
-        </motion.p>
+            {/* Bullets */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="flex flex-wrap gap-3 mb-8"
+            >
+              {bullets.map((b) => (
+                <div
+                  key={b.label}
+                  className="flex items-center gap-2 rounded-full bg-white/[0.06] border border-white/8 px-3.5 py-1.5"
+                >
+                  <b.icon className="h-3.5 w-3.5 text-violet-400" strokeWidth={1.5} />
+                  <span className="text-xs text-white/60">{b.label}</span>
+                </div>
+              ))}
+            </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
-        >
-          <Button size="lg" onClick={() => scrollToSection('waitlist')}>
-            Join the waitlist
-          </Button>
-          <Button variant="ghost" size="lg" onClick={() => scrollToSection('how-it-works')}>
-            See how it works
-          </Button>
-        </motion.div>
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="flex flex-col sm:flex-row items-start gap-4 mb-4"
+            >
+              <Button size="lg" onClick={() => scrollToSection('waitlist')}>
+                Join the waitlist
+              </Button>
+              <Button variant="ghost" size="lg" onClick={() => scrollToSection('how-it-works')}>
+                See how it works
+              </Button>
+            </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          className="text-xs text-white/30"
-        >
-          Early access is limited. No spam.
-        </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="text-xs text-white/30"
+            >
+              Coming soon.
+            </motion.p>
+          </div>
+
+          {/* Right: phone mockups */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex justify-center lg:justify-end"
+          >
+            <PhoneMockups />
+          </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -2,34 +2,32 @@
 
 import { motion } from 'framer-motion'
 import { Separator } from '@/components/ui/separator'
-import { CalendarCheck, Flame, Target, MessageCircle } from 'lucide-react'
+import { CalendarCheck, MessageCircle, Phone } from 'lucide-react'
 
 const steps = [
   {
     number: '01',
-    title: 'Tell us about you',
-    description:
-      'Your sport, your goals, your schedule, where you\'re at right now. Athly builds around your actual life, not a template.',
+    title: 'Pick an athlete',
+    description: "Choose who you trust — Athly is built around their approach.",
   },
   {
     number: '02',
-    title: 'Get one clear plan',
+    title: 'Get one plan',
     description:
-      'Training, skills, recovery — consolidated into a single weekly plan shaped by your chosen athlete\'s methodology. No guesswork.',
+      'A personalised weekly plan that consolidates training, skills, and recovery.',
   },
   {
     number: '03',
-    title: 'Stay consistent',
+    title: 'Get guidance',
     description:
-      'Track your progress, hit streaks, take on challenges, and stay connected to a community and coaching moments that keep you going.',
+      'Message for adjustments, join drops, and access occasional check-ins (limited).',
   },
 ]
 
 const features = [
-  { icon: CalendarCheck, label: 'Weekly plan you can follow' },
-  { icon: Target, label: 'Progress tracking' },
-  { icon: Flame, label: 'Challenges and streaks' },
-  { icon: MessageCircle, label: 'Community and coaching moments' },
+  { icon: CalendarCheck, label: 'Weekly plan' },
+  { icon: MessageCircle, label: 'Messaging' },
+  { icon: Phone, label: 'Limited check-ins' },
 ]
 
 export function HowItWorks() {
@@ -47,7 +45,7 @@ export function HowItWorks() {
             How it works
           </h2>
           <p className="text-white/40 max-w-md mx-auto">
-            Three steps. One plan. Real progress.
+            Three steps. One plan. Real guidance.
           </p>
         </motion.div>
 
@@ -81,17 +79,14 @@ export function HowItWorks() {
 
         <Separator className="mb-16" />
 
-        {/* What you get mini-grid */}
+        {/* Mini features row */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-center font-[family-name:var(--font-display)] text-sm font-semibold text-white/50 uppercase tracking-wider mb-8">
-            What you get
-          </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             {features.map((feature, i) => (
               <motion.div
                 key={feature.label}

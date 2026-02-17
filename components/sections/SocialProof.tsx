@@ -1,28 +1,28 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Shield, Smartphone, Filter, Users } from 'lucide-react'
+import { MessageCircle, Smartphone, Filter, Users } from 'lucide-react'
 
 const cues = [
   {
-    icon: Shield,
-    title: 'Built with elite athlete input',
-    description: 'Training methodology shaped by people who compete at the highest level.',
+    icon: MessageCircle,
+    title: 'Direct messaging',
+    description: 'Message within the athlete\'s community for personalised guidance and plan adjustments.',
   },
   {
     icon: Filter,
-    title: 'Designed to reduce noise',
-    description: 'One consolidated plan instead of scattered advice from ten different sources.',
+    title: 'One plan, not ten',
+    description: 'A single consolidated plan instead of scattered advice from random sources.',
   },
   {
     icon: Smartphone,
     title: 'Mobile-first, habit-friendly',
-    description: 'Built for daily use. Open, train, track. No friction.',
+    description: 'Built for daily use. Open, train, track, message. No friction.',
   },
   {
     icon: Users,
-    title: 'Early roster across major sports',
-    description: 'Athletes from AFL, cricket, NRL, football, and more. Names dropping soon.',
+    title: 'Occasional check-ins',
+    description: 'Limited access moments with athletes. Real connection, not a promise of 24/7.',
   },
 ]
 

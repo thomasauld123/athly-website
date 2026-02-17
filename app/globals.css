@@ -118,3 +118,12 @@ body::after {
 .animate-float-slower {
   animation: float-slower 12s ease-in-out infinite;
 }
+
+/* ─── Marquee ─── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
