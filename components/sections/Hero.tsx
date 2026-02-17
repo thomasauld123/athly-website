@@ -32,9 +32,9 @@ function LiquidGlassBlob() {
           <feGaussianBlur stdDeviation="20" />
         </filter>
         <radialGradient id="blob-gradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(139, 92, 246, 0.4)" />
-          <stop offset="50%" stopColor="rgba(79, 70, 229, 0.2)" />
-          <stop offset="100%" stopColor="rgba(30, 27, 75, 0)" />
+          <stop offset="0%" stopColor="rgba(52, 211, 153, 0.35)" />
+          <stop offset="50%" stopColor="rgba(16, 185, 129, 0.15)" />
+          <stop offset="100%" stopColor="rgba(5, 46, 22, 0)" />
         </radialGradient>
       </defs>
       <ellipse
@@ -53,18 +53,18 @@ function GradientOrbs() {
   return (
     <>
       <div
-        className="absolute top-[15%] left-[10%] w-72 h-72 rounded-full opacity-20 blur-[100px] animate-float-slow pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, transparent 70%)' }}
+        className="absolute top-[15%] left-[10%] w-72 h-72 rounded-full opacity-15 blur-[100px] animate-float-slow pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(52,211,153,0.5) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
       <div
-        className="absolute top-[60%] right-[5%] w-96 h-96 rounded-full opacity-15 blur-[120px] animate-float-slower pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.5) 0%, transparent 70%)' }}
+        className="absolute top-[60%] right-[5%] w-96 h-96 rounded-full opacity-10 blur-[120px] animate-float-slower pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.4) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-[10%] left-[30%] w-64 h-64 rounded-full opacity-10 blur-[80px] animate-float-slow pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.5) 0%, transparent 70%)', animationDelay: '3s' }}
+        className="absolute bottom-[10%] left-[30%] w-64 h-64 rounded-full opacity-8 blur-[80px] animate-float-slow pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(52,211,153,0.4) 0%, transparent 70%)', animationDelay: '3s' }}
         aria-hidden="true"
       />
     </>
@@ -80,20 +80,17 @@ const bullets = [
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background effects */}
       <LiquidGlassBlob />
       <GradientOrbs />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-6xl px-6 w-full pt-24 pb-16">
+      <div className="relative z-10 mx-auto w-full px-6 pt-24 pb-16" style={{ maxWidth: 'var(--container-max)' }}>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: copy */}
           <div>
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight leading-[1.08] mb-5"
+              className="font-[family-name:var(--font-display)] text-[clamp(2.625rem,6vw,4.5rem)] font-bold tracking-tight leading-[1.06] mb-5"
             >
               Personal coaching from your favourite athlete.
             </motion.h1>
@@ -102,12 +99,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg text-white/50 max-w-md mb-8 leading-relaxed"
+              className="text-[clamp(1rem,2vw,1.125rem)] text-white/50 max-w-md mb-8 leading-relaxed"
             >
-              Chat to the world&apos;s best athletes for direct guidance.
+              Message within the athlete&apos;s community for direct guidance on your training.
             </motion.p>
 
-            {/* Bullets */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -119,13 +115,12 @@ export function Hero() {
                   key={b.label}
                   className="flex items-center gap-2 rounded-full bg-white/[0.06] border border-white/8 px-3.5 py-1.5"
                 >
-                  <b.icon className="h-3.5 w-3.5 text-violet-400" strokeWidth={1.5} />
+                  <b.icon className="h-3.5 w-3.5" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
                   <span className="text-xs text-white/60">{b.label}</span>
                 </div>
               ))}
             </motion.div>
 
-            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -150,7 +145,6 @@ export function Hero() {
             </motion.p>
           </div>
 
-          {/* Right: phone mockups */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}

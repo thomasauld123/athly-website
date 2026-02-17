@@ -39,15 +39,13 @@ function MessagingScreen() {
       <Notch />
       <StatusBar />
 
-      {/* App bar */}
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
         <span className="font-[family-name:var(--font-display)] text-sm font-semibold text-white">Messages</span>
         <Badge variant="accent" className="text-[9px]">Verified</Badge>
       </div>
 
-      {/* Chat header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-white/5">
-        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-violet-500 to-indigo-700 flex-shrink-0 ring-2 ring-violet-500/20" />
+        <div className="w-9 h-9 rounded-full flex-shrink-0 ring-2 ring-[color:var(--accent-border)]" style={{ background: 'linear-gradient(135deg, var(--accent), var(--accent-2))' }} />
         <div className="flex-1 min-w-0">
           <div className="relative">
             <div className="h-4 w-24 rounded bg-white/10 blur-md" />
@@ -60,46 +58,39 @@ function MessagingScreen() {
         <Badge variant="muted" className="text-[8px]">Athlete</Badge>
       </div>
 
-      {/* Messages */}
       <div className="flex-1 px-3 py-3 space-y-2.5 overflow-hidden">
-        {/* User message */}
         <div className="flex justify-end">
-          <div className="max-w-[80%] rounded-2xl rounded-br-md bg-violet-600/30 border border-violet-500/20 px-3 py-2">
+          <div className="max-w-[80%] rounded-2xl rounded-br-md px-3 py-2" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-border)' }}>
             <p className="text-[10px] text-white/80 leading-relaxed">I keep fading late in games. What should I focus on this week?</p>
           </div>
         </div>
 
-        {/* Athlete team message */}
         <div className="flex justify-start">
           <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-white/[0.06] border border-white/8 px-3 py-2">
             <p className="text-[10px] text-white/70 leading-relaxed">Got you. Two sessions: speed endurance + repeat efforts. I&apos;ll tailor it to your schedule.</p>
           </div>
         </div>
 
-        {/* User message */}
         <div className="flex justify-end">
-          <div className="max-w-[80%] rounded-2xl rounded-br-md bg-violet-600/30 border border-violet-500/20 px-3 py-2">
+          <div className="max-w-[80%] rounded-2xl rounded-br-md px-3 py-2" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-border)' }}>
             <p className="text-[10px] text-white/80 leading-relaxed">I can train Tue/Thu + game Sat.</p>
           </div>
         </div>
 
-        {/* Athlete team message */}
         <div className="flex justify-start">
           <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-white/[0.06] border border-white/8 px-3 py-2">
             <p className="text-[10px] text-white/70 leading-relaxed">Perfect — here&apos;s your week. Keep it simple and hit the targets.</p>
           </div>
         </div>
 
-        {/* Plan updated toast */}
         <div className="flex justify-center pt-1">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-xl px-3 py-1">
-            <CheckCircle2 className="h-3 w-3 text-emerald-400" />
+            <CheckCircle2 className="h-3 w-3" style={{ color: 'var(--accent)' }} />
             <span className="text-[9px] font-medium text-white/60">Plan updated</span>
           </div>
         </div>
       </div>
 
-      {/* Input bar */}
       <div className="px-3 pb-4 pt-1">
         <div className="flex items-center gap-2 rounded-full bg-white/[0.06] border border-white/8 px-3 py-2">
           <span className="text-[10px] text-white/25 flex-1">Message...</span>
@@ -116,19 +107,17 @@ function CheckInScreen() {
       <Notch />
       <StatusBar />
 
-      {/* App bar */}
       <div className="px-4 py-2.5 border-b border-white/5">
         <span className="font-[family-name:var(--font-display)] text-sm font-semibold text-white">Check-in</span>
       </div>
 
-      {/* Call request card */}
       <div className="px-3 py-4 space-y-4">
         <div className="rounded-xl bg-white/[0.06] border border-white/8 p-4 space-y-3">
           <p className="text-[11px] font-medium text-white/70">Request a quick call</p>
           <p className="text-[9px] text-white/35">Limited availability per invite wave</p>
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-500/10 border border-violet-500/15 px-2.5 py-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
-            <span className="text-[9px] font-medium text-violet-300">Next invite wave</span>
+          <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-border)' }}>
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
+            <span className="text-[9px] font-medium" style={{ color: 'var(--accent)' }}>Next invite wave</span>
           </div>
           <div className="pt-1">
             <div className="w-full rounded-lg bg-white text-black text-[10px] font-semibold text-center py-2">
@@ -137,20 +126,18 @@ function CheckInScreen() {
           </div>
         </div>
 
-        {/* Voice note */}
         <div className="rounded-xl bg-white/[0.06] border border-white/8 p-4 space-y-2.5">
           <p className="text-[10px] font-medium text-white/60">Voice note received</p>
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
               <Play className="h-3 w-3 text-white/60 ml-0.5" />
             </div>
-            {/* Waveform bars */}
             <div className="flex items-center gap-[2px] flex-1">
               {[3, 5, 8, 6, 10, 7, 4, 9, 6, 3, 7, 10, 5, 8, 4, 6, 9, 3, 7, 5, 8, 4, 6, 3].map((h, i) => (
                 <div
                   key={i}
-                  className="w-[2px] rounded-full bg-violet-400/50"
-                  style={{ height: `${h}px` }}
+                  className="w-[2px] rounded-full"
+                  style={{ height: `${h}px`, background: 'var(--accent)', opacity: 0.5 }}
                 />
               ))}
             </div>
@@ -165,7 +152,6 @@ function CheckInScreen() {
 export function PhoneMockups() {
   return (
     <div className="relative w-full max-w-[380px] mx-auto lg:mx-0 h-[520px] sm:h-[560px]">
-      {/* Back phone */}
       <motion.div
         animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
         transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity }}
@@ -175,7 +161,6 @@ export function PhoneMockups() {
         <CheckInScreen />
       </motion.div>
 
-      {/* Front phone */}
       <motion.div
         animate={{ y: [0, 6, 0], rotate: [1, -0.5, 1] }}
         transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity }}

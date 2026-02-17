@@ -1,6 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { GlassCard } from '@/components/ui/glass-card'
+import { FloatCluster } from '@/components/visual/FloatCluster'
 import { Separator } from '@/components/ui/separator'
 import {
   Accordion,
@@ -8,110 +11,91 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { Zap, CalendarCheck, Phone } from 'lucide-react'
 
-const timeline = [
-  { label: 'Roster locked', status: 'active' as const },
-  { label: 'Early access invites', status: 'upcoming' as const },
-  { label: 'Public launch', status: 'upcoming' as const },
+const cadence = [
+  { icon: Zap, label: 'Invite waves', detail: 'Access opens in waves. Waitlist members go first.' },
+  { icon: CalendarCheck, label: 'Weekly drops', detail: 'New athletes and plans drop each week after launch.' },
+  { icon: Phone, label: 'Limited check-ins', detail: 'Occasional access to athletes. Not guaranteed, not 24/7.' },
 ]
 
 const faq = [
   {
     question: 'When can I get access?',
     answer:
-      'We\'re rolling out invite waves starting soon. Waitlist members get priority. The earlier you sign up, the earlier you\'re in.',
+      'We\'re rolling out invite waves starting soon. Waitlist members get priority — the earlier you sign up, the earlier you\'re in.',
   },
   {
-    question: 'Is this a training plan or a content library?',
+    question: 'What do I actually get?',
     answer:
-      'Neither, exactly. Athly gives you one consolidated plan — training, skills, and recovery — shaped by an athlete\'s methodology and adapted to your goals and schedule. It\'s not a library you browse. It\'s a plan you follow.',
+      'One consolidated plan — training, skills, and recovery — shaped by an athlete\'s methodology and adapted to your goals. Plus messaging within the athlete\'s community for adjustments.',
   },
   {
-    question: 'Can I interact with athletes?',
+    question: 'Can I talk to athletes directly?',
     answer:
-      'Athly includes a community layer and occasional limited-access moments with athletes. This isn\'t guaranteed 1:1 coaching — it\'s structured so that coaching insight reaches you at scale, with real moments of connection built in.',
+      'Athly includes a community layer and occasional limited-access check-ins with athletes. This isn\'t guaranteed 1:1 coaching — it\'s structured so that coaching insight reaches you at scale, with real moments of connection built in.',
   },
 ]
 
 export function ComingSoon() {
   return (
-    <section className="relative py-24 px-6">
-      <div className="mx-auto max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Coming soon
-          </h2>
-          <p className="text-lg text-white/60 font-medium mb-3">
-            Athly isn&apos;t live yet — this is an early preview.
-          </p>
-          <p className="text-sm text-white/40 max-w-lg mx-auto leading-relaxed">
-            We&apos;re building the first version now. When it&apos;s ready, we&apos;ll open access
-            in waves — starting with the waitlist. You&apos;ll be the first to know.
-          </p>
-        </motion.div>
+    <section className="relative px-6" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
+      <div className="mx-auto" style={{ maxWidth: 'var(--container-max)' }}>
+        <div className="max-w-3xl mx-auto">
+          <SectionHeading
+            title="Coming soon"
+            subtitle="We're building Athly now. When it's ready, we'll open access in waves — starting with the waitlist."
+          />
 
-        {/* Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="glass rounded-2xl p-6 mb-12"
-        >
-          <div className="flex items-center justify-between gap-2">
-            {timeline.map((step, i) => (
-              <div key={step.label} className="flex items-center gap-2 flex-1">
-                <div className="flex items-center gap-3 flex-1">
-                  <div
-                    className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                      step.status === 'active'
-                        ? 'bg-violet-500 shadow-lg shadow-violet-500/30'
-                        : 'bg-white/15'
-                    }`}
-                  />
-                  <span
-                    className={`text-xs font-medium whitespace-nowrap ${
-                      step.status === 'active' ? 'text-white' : 'text-white/40'
-                    }`}
-                  >
-                    {step.label}
-                  </span>
-                </div>
-                {i < timeline.length - 1 && (
-                  <div className="h-px flex-1 bg-white/10 mx-2 hidden sm:block" />
-                )}
-              </div>
-            ))}
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative"
+          >
+            <div className="grid sm:grid-cols-3 gap-4 mb-12">
+              {cadence.map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                >
+                  <GlassCard className="p-5 h-full">
+                    <item.icon className="h-4 w-4 mb-3" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
+                    <p className="text-sm font-medium text-white/80 mb-1">{item.label}</p>
+                    <p className="text-xs text-white/35 leading-relaxed">{item.detail}</p>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
 
-        <Separator className="mb-12" />
+            <FloatCluster variant="drop" className="absolute -right-4 -top-8 hidden lg:block opacity-40" />
+          </motion.div>
 
-        {/* FAQ */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-white/50 uppercase tracking-wider mb-6 text-center">
-            Questions
-          </p>
-          <Accordion type="single" collapsible className="w-full">
-            {faq.map((item, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger>{item.question}</AccordionTrigger>
-                <AccordionContent>{item.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+          <Separator className="mb-12" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-white/50 uppercase tracking-wider mb-6 text-center">
+              Questions
+            </p>
+            <Accordion type="single" collapsible className="w-full">
+              {faq.map((item, i) => (
+                <AccordionItem key={i} value={`item-${i}`}>
+                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionContent>{item.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

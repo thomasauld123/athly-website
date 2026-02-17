@@ -32,9 +32,8 @@ export function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto px-6" style={{ maxWidth: 'var(--container-max)' }}>
         <div className="flex h-16 items-center justify-between">
-          {/* Left: wordmark + pill */}
           <div className="flex items-center gap-3">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -47,7 +46,6 @@ export function Header() {
             </Badge>
           </div>
 
-          {/* Center: nav links (desktop) */}
           <nav className="hidden items-center gap-8 md:flex" role="navigation">
             {navLinks.map((link) => (
               <button
@@ -60,7 +58,6 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Right: CTA */}
           <Button
             size="sm"
             onClick={() => scrollToSection('waitlist')}

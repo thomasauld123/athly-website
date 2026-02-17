@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MessageCircle, Smartphone, Filter, Users } from 'lucide-react'
+import { GlassCard } from '@/components/ui/glass-card'
 
 const cues = [
   {
@@ -28,8 +29,8 @@ const cues = [
 
 export function SocialProof() {
   return (
-    <section className="relative py-24 px-6">
-      <div className="mx-auto max-w-5xl">
+    <section className="relative px-6" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
+      <div className="mx-auto" style={{ maxWidth: 'var(--container-max)' }}>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,16 +44,17 @@ export function SocialProof() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass rounded-2xl p-6 transition-all duration-300 glass-hover"
+              transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <cue.icon className="h-5 w-5 text-violet-400 mb-4" strokeWidth={1.5} />
-              <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-white mb-1.5">
-                {cue.title}
-              </p>
-              <p className="text-xs text-white/40 leading-relaxed">
-                {cue.description}
-              </p>
+              <GlassCard className="p-6 h-full">
+                <cue.icon className="h-5 w-5 mb-4" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
+                <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-white mb-1.5">
+                  {cue.title}
+                </p>
+                <p className="text-xs text-white/40 leading-relaxed">
+                  {cue.description}
+                </p>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>

@@ -2,6 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { Separator } from '@/components/ui/separator'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { GlassCard } from '@/components/ui/glass-card'
+import { GlassCardStack } from '@/components/visual/GlassCardStack'
 import { CalendarCheck, MessageCircle, Phone } from 'lucide-react'
 
 const steps = [
@@ -20,7 +23,7 @@ const steps = [
     number: '03',
     title: 'Get guidance',
     description:
-      'Message for adjustments, join drops, and access occasional check-ins (limited).',
+      'Message within the community for adjustments and access occasional check-ins (limited).',
   },
 ]
 
@@ -30,56 +33,56 @@ const features = [
   { icon: Phone, label: 'Limited check-ins' },
 ]
 
+const stackCards = [
+  { label: 'Plan updated', detail: 'Week 4 — speed endurance' },
+  { label: 'New drop', detail: 'Athlete added to roster' },
+  { label: 'Check-in available', detail: 'Limited — next wave' },
+]
+
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative py-24 px-6">
-      <div className="mx-auto max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            How it works
-          </h2>
-          <p className="text-white/40 max-w-md mx-auto">
-            Three steps. One plan. Real guidance.
-          </p>
-        </motion.div>
+    <section id="how-it-works" className="relative px-6" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
+      <div className="mx-auto" style={{ maxWidth: 'var(--container-max)' }}>
+        <SectionHeading
+          title="How it works"
+          subtitle="Three steps. One plan. Real guidance."
+        />
 
-        {/* Steps */}
-        <div className="space-y-12 mb-20">
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex gap-6 items-start"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl glass flex items-center justify-center">
-                <span className="font-[family-name:var(--font-display)] text-sm font-bold text-violet-400">
-                  {step.number}
-                </span>
-              </div>
-              <div className="pt-1">
-                <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-white/40 leading-relaxed max-w-lg">
-                  {step.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid lg:grid-cols-[1fr,auto] gap-12 lg:gap-16 items-start mb-16">
+          <div className="space-y-10">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="flex gap-5 items-start"
+              >
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl glass flex items-center justify-center">
+                  <span className="font-[family-name:var(--font-display)] text-sm font-bold" style={{ color: 'var(--accent)' }}>
+                    {step.number}
+                  </span>
+                </div>
+                <div className="pt-0.5">
+                  <h3 className="font-[family-name:var(--font-display)] text-base font-semibold mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-white/40 leading-relaxed max-w-lg">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="hidden lg:flex items-center justify-center">
+            <GlassCardStack cards={stackCards} />
+          </div>
         </div>
 
-        <Separator className="mb-16" />
+        <Separator className="mb-12" />
 
-        {/* Mini features row */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,10 +97,11 @@ export function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="glass rounded-xl p-5 text-center transition-all duration-300 glass-hover"
               >
-                <feature.icon className="h-5 w-5 text-violet-400 mx-auto mb-3" strokeWidth={1.5} />
-                <p className="text-xs font-medium text-white/70">{feature.label}</p>
+                <GlassCard className="rounded-xl p-5 text-center">
+                  <feature.icon className="h-5 w-5 mx-auto mb-3" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
+                  <p className="text-xs font-medium text-white/70">{feature.label}</p>
+                </GlassCard>
               </motion.div>
             ))}
           </div>

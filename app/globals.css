@@ -42,6 +42,26 @@
   }
 }
 
+/* ─── Design tokens ─── */
+:root {
+  --accent: #34d399;
+  --accent-2: #10b981;
+  --accent-soft: rgba(52, 211, 153, 0.10);
+  --accent-border: rgba(52, 211, 153, 0.20);
+  --ring: rgba(52, 211, 153, 0.40);
+  --glass-fill: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-fill-hover: rgba(255, 255, 255, 0.10);
+  --glass-border-hover: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glass-blur: 24px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+  --section-py: clamp(3.5rem, 6vw, 5rem);
+  --container-max: 1200px;
+}
+
 /* ─── Base ─── */
 html {
   scroll-behavior: smooth;
@@ -57,13 +77,13 @@ body {
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.3);
+  background: var(--accent-soft);
   color: white;
 }
 
 /* ─── Focus ─── */
 :focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline: 2px solid var(--ring);
   outline-offset: 2px;
   border-radius: 8px;
 }
@@ -73,7 +93,7 @@ body {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
 
-/* ─── Noise overlay (applied via pseudo-element on body) ─── */
+/* ─── Noise overlay ─── */
 body::before {
   content: '';
   position: fixed;
@@ -98,17 +118,45 @@ body::after {
 
 /* ─── Glass surface utility ─── */
 .glass {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: var(--glass-fill);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .glass-hover:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  background: var(--glass-fill-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* ─── Glass sheen on hover ─── */
+.glass-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.glass-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.glass-sheen:hover::after {
+  transform: translateX(100%);
 }
 
 /* ─── Orb animation classes ─── */
@@ -124,6 +172,58 @@ body::after {
   0% { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }
 }
+@keyframes marquee-reverse {
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
+}
 .animate-marquee {
   animation: marquee 40s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 40s linear infinite;
+}
+
+/* ─── Roster marquee ─── */
+@keyframes roster-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes roster-scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-roster {
+  animation: roster-scroll 60s linear infinite;
+}
+.animate-roster-reverse {
+  animation: roster-scroll-reverse 60s linear infinite;
+}
+
+/* ─── Cursor glow ─── */
+.cursor-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  will-change: top, left;
+}
+.cursor-glow.active {
+  opacity: 1;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .cursor-glow { display: none; }
+  html { scroll-behavior: auto; }
 }

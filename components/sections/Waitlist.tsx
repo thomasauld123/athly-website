@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { FloatCluster } from '@/components/visual/FloatCluster'
 import { appendWaitlistEntry } from '@/lib/storage'
 import { useToast } from '@/components/ui/use-toast'
 import { CheckCircle2 } from 'lucide-react'
@@ -68,22 +70,14 @@ export function Waitlist() {
   }
 
   return (
-    <section id="waitlist" className="relative py-24 px-6">
-      <div className="mx-auto max-w-xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10"
-        >
-          <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Get early access
-          </h2>
-          <p className="text-white/40">
-            Tell us who you want to train with and what you&apos;re working on. We&apos;ll save you a spot.
-          </p>
-        </motion.div>
+    <section id="waitlist" className="relative px-6" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
+      <div className="mx-auto relative" style={{ maxWidth: '560px' }}>
+        <FloatCluster variant="invite" className="absolute -right-72 top-24 hidden xl:block opacity-30" />
+
+        <SectionHeading
+          title="Get early access"
+          subtitle="Tell us who you want to train with and what you're working on. We'll save you a spot."
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -101,7 +95,7 @@ export function Waitlist() {
                 transition={{ duration: 0.3 }}
                 className="glass rounded-2xl p-10 text-center"
               >
-                <CheckCircle2 className="h-10 w-10 text-violet-400 mx-auto mb-4" strokeWidth={1.5} />
+                <CheckCircle2 className="h-10 w-10 mx-auto mb-4" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
                 <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold mb-2">
                   You&apos;re in.
                 </h3>
@@ -123,7 +117,6 @@ export function Waitlist() {
                 className="glass rounded-2xl p-8 space-y-5"
                 noValidate
               >
-                {/* Sport */}
                 <div className="space-y-1.5">
                   <label htmlFor="sport" className="text-sm font-medium text-white/70">
                     Favourite sport *
@@ -137,7 +130,6 @@ export function Waitlist() {
                   {errors.sport && <p className="text-xs text-red-400">{errors.sport}</p>}
                 </div>
 
-                {/* Team */}
                 <div className="space-y-1.5">
                   <label htmlFor="team" className="text-sm font-medium text-white/70">
                     Favourite team *
@@ -151,7 +143,6 @@ export function Waitlist() {
                   {errors.team && <p className="text-xs text-red-400">{errors.team}</p>}
                 </div>
 
-                {/* Athlete */}
                 <div className="space-y-1.5">
                   <label htmlFor="athlete" className="text-sm font-medium text-white/70">
                     Athlete you want to see on Athly *
@@ -165,7 +156,6 @@ export function Waitlist() {
                   {errors.athlete && <p className="text-xs text-red-400">{errors.athlete}</p>}
                 </div>
 
-                {/* Goal */}
                 <div className="space-y-1.5">
                   <label htmlFor="goal" className="text-sm font-medium text-white/70">
                     What are you training for? *
@@ -176,12 +166,11 @@ export function Waitlist() {
                     placeholder="e.g. Make first team, get faster, return from injury, build strength for pre-season"
                     value={form.goal}
                     onChange={(e) => updateField('goal', e.target.value)}
-                    className="flex w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 backdrop-blur-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:border-white/20 resize-none"
+                    className="flex w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 backdrop-blur-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:border-[color:var(--accent-border)] resize-none"
                   />
                   {errors.goal && <p className="text-xs text-red-400">{errors.goal}</p>}
                 </div>
 
-                {/* Email (optional) */}
                 <div className="space-y-1.5">
                   <label htmlFor="email" className="text-sm font-medium text-white/70">
                     Email <span className="text-white/30">(optional, for invites)</span>
