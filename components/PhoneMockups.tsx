@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { Lock, Send, Play, CheckCircle2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
+const FLOAT = { duration: 6, ease: 'easeInOut' as const, repeat: Infinity }
+
 function StatusBar() {
   return (
     <div className="flex items-center justify-between px-5 pt-3 pb-1">
@@ -60,32 +62,32 @@ function MessagingScreen() {
 
       <div className="flex-1 px-3 py-3 space-y-2.5 overflow-hidden">
         <div className="flex justify-end">
-          <div className="max-w-[80%] rounded-2xl rounded-br-md px-3 py-2" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-border)' }}>
+          <div className="max-w-[80%] rounded-2xl rounded-br-md px-3 py-2 bg-[color:var(--accent-soft)] border border-[color:var(--accent-border)]">
             <p className="text-[10px] text-white/80 leading-relaxed">I keep fading late in games. What should I focus on this week?</p>
           </div>
         </div>
 
         <div className="flex justify-start">
-          <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-white/[0.06] border border-white/8 px-3 py-2">
-            <p className="text-[10px] text-white/70 leading-relaxed">Got you. Two sessions: speed endurance + repeat efforts. I&apos;ll tailor it to your schedule.</p>
+          <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-white/[0.08] border border-white/10 px-3 py-2">
+            <p className="text-[10px] text-white/80 leading-relaxed">Got you. Two sessions: speed endurance + repeat efforts. I&apos;ll tailor it to your schedule.</p>
           </div>
         </div>
 
         <div className="flex justify-end">
-          <div className="max-w-[80%] rounded-2xl rounded-br-md px-3 py-2" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-border)' }}>
+          <div className="max-w-[80%] rounded-2xl rounded-br-md px-3 py-2 bg-[color:var(--accent-soft)] border border-[color:var(--accent-border)]">
             <p className="text-[10px] text-white/80 leading-relaxed">I can train Tue/Thu + game Sat.</p>
           </div>
         </div>
 
         <div className="flex justify-start">
-          <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-white/[0.06] border border-white/8 px-3 py-2">
-            <p className="text-[10px] text-white/70 leading-relaxed">Perfect — here&apos;s your week. Keep it simple and hit the targets.</p>
+          <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-white/[0.08] border border-white/10 px-3 py-2">
+            <p className="text-[10px] text-white/80 leading-relaxed">Perfect — here&apos;s your week. Keep it simple and hit the targets.</p>
           </div>
         </div>
 
         <div className="flex justify-center pt-1">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-xl px-3 py-1">
-            <CheckCircle2 className="h-3 w-3" style={{ color: 'var(--accent)' }} />
+            <CheckCircle2 className="h-3 w-3 text-[color:var(--accent)]" />
             <span className="text-[9px] font-medium text-white/60">Plan updated</span>
           </div>
         </div>
@@ -115,9 +117,9 @@ function CheckInScreen() {
         <div className="rounded-xl bg-white/[0.06] border border-white/8 p-4 space-y-3">
           <p className="text-[11px] font-medium text-white/70">Request a quick call</p>
           <p className="text-[9px] text-white/35">Limited availability per invite wave</p>
-          <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-border)' }}>
-            <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
-            <span className="text-[9px] font-medium" style={{ color: 'var(--accent)' }}>Next invite wave</span>
+          <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 bg-[color:var(--accent-soft)] border border-[color:var(--accent-border)]">
+            <div className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]" />
+            <span className="text-[9px] font-medium text-[color:var(--accent)]">Next invite wave</span>
           </div>
           <div className="pt-1">
             <div className="w-full rounded-lg bg-white text-black text-[10px] font-semibold text-center py-2">
@@ -136,8 +138,8 @@ function CheckInScreen() {
               {[3, 5, 8, 6, 10, 7, 4, 9, 6, 3, 7, 10, 5, 8, 4, 6, 9, 3, 7, 5, 8, 4, 6, 3].map((h, i) => (
                 <div
                   key={i}
-                  className="w-[2px] rounded-full"
-                  style={{ height: `${h}px`, background: 'var(--accent)', opacity: 0.5 }}
+                  className="w-[2px] rounded-full bg-[color:var(--accent)] opacity-50"
+                  style={{ height: `${h}px` }}
                 />
               ))}
             </div>
@@ -149,12 +151,28 @@ function CheckInScreen() {
   )
 }
 
+function FloatingNotification() {
+  return (
+    <motion.div
+      animate={{ y: [0, -4, 0] }}
+      transition={{ ...FLOAT, delay: 1.5 }}
+      className="absolute -right-4 top-16 z-30 glass-surface rounded-xl px-3.5 py-2.5 flex items-center gap-2.5 shadow-xl"
+    >
+      <CheckCircle2 className="h-4 w-4 text-[color:var(--accent)] flex-shrink-0" />
+      <div>
+        <p className="text-[10px] font-medium text-white/80">Plan updated</p>
+        <p className="text-[9px] text-white/40">Week 4 — speed endurance</p>
+      </div>
+    </motion.div>
+  )
+}
+
 export function PhoneMockups() {
   return (
     <div className="relative w-full max-w-[380px] mx-auto lg:mx-0 h-[520px] sm:h-[560px]">
       <motion.div
         animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
-        transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity }}
+        transition={FLOAT}
         className="absolute top-0 left-0 w-[220px] sm:w-[240px] h-[420px] sm:h-[460px] rounded-[32px] bg-white/[0.06] border border-white/[0.12] backdrop-blur-xl shadow-2xl shadow-black/40 overflow-hidden z-10 opacity-70"
         style={{ boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.08), 0 25px 50px -12px rgba(0,0,0,0.5)' }}
       >
@@ -163,12 +181,14 @@ export function PhoneMockups() {
 
       <motion.div
         animate={{ y: [0, 6, 0], rotate: [1, -0.5, 1] }}
-        transition={{ duration: 8, ease: 'easeInOut', repeat: Infinity }}
+        transition={FLOAT}
         className="absolute top-12 right-0 w-[240px] sm:w-[260px] h-[460px] sm:h-[500px] rounded-[32px] bg-white/[0.08] border border-white/[0.14] backdrop-blur-xl shadow-2xl shadow-black/50 overflow-hidden z-20"
         style={{ boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.1), 0 25px 50px -12px rgba(0,0,0,0.6)' }}
       >
         <MessagingScreen />
       </motion.div>
+
+      <FloatingNotification />
     </div>
   )
 }

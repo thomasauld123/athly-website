@@ -1,7 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { Section } from '@/components/ui/Section'
+import { Container } from '@/components/ui/Container'
+import { Reveal } from '@/components/visual/Reveal'
 import { RosterCard } from './RosterCard'
 
 const athletes = [
@@ -24,46 +26,43 @@ const row2 = athletes.slice(6, 12)
 
 export function RosterMarquee() {
   return (
-    <section id="athletes" className="relative" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
-      <div className="mx-auto px-6" style={{ maxWidth: 'var(--container-max)' }}>
+    <Section id="athletes">
+      <Container>
         <SectionHeading
           title="Launch roster"
           subtitle="Names stay hidden until launch. Waitlist members influence who drops first."
         />
-      </div>
+      </Container>
 
-      {/* Two-row marquee */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.6, delay: 0.15 }}
-        className="relative overflow-hidden"
-      >
-        {/* Edge fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
-
-        {/* Row 1 - moves left */}
-        <div className="flex animate-roster hover:[animation-play-state:paused] mb-4">
-          <div className="flex gap-4 flex-shrink-0 pr-4">
-            {row1.map((a, i) => <RosterCard key={`1a-${i}`} {...a} />)}
+      <Reveal>
+        <div
+          className="relative overflow-hidden"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+          }}
+        >
+          {/* Row 1 - moves left */}
+          <div className="flex animate-roster hover:[animation-play-state:paused] mb-4">
+            <div className="flex gap-4 flex-shrink-0 pr-4">
+              {row1.map((a, i) => <RosterCard key={`1a-${i}`} {...a} />)}
+            </div>
+            <div className="flex gap-4 flex-shrink-0 pr-4">
+              {row1.map((a, i) => <RosterCard key={`1b-${i}`} {...a} />)}
+            </div>
           </div>
-          <div className="flex gap-4 flex-shrink-0 pr-4">
-            {row1.map((a, i) => <RosterCard key={`1b-${i}`} {...a} />)}
+
+          {/* Row 2 - moves right, scaled down for depth */}
+          <div className="flex animate-roster-reverse hover:[animation-play-state:paused] scale-[0.92] opacity-80">
+            <div className="flex gap-4 flex-shrink-0 pr-4">
+              {row2.map((a, i) => <RosterCard key={`2a-${i}`} {...a} />)}
+            </div>
+            <div className="flex gap-4 flex-shrink-0 pr-4">
+              {row2.map((a, i) => <RosterCard key={`2b-${i}`} {...a} />)}
+            </div>
           </div>
         </div>
-
-        {/* Row 2 - moves right */}
-        <div className="flex animate-roster-reverse hover:[animation-play-state:paused]">
-          <div className="flex gap-4 flex-shrink-0 pr-4">
-            {row2.map((a, i) => <RosterCard key={`2a-${i}`} {...a} />)}
-          </div>
-          <div className="flex gap-4 flex-shrink-0 pr-4">
-            {row2.map((a, i) => <RosterCard key={`2b-${i}`} {...a} />)}
-          </div>
-        </div>
-      </motion.div>
-    </section>
+      </Reveal>
+    </Section>
   )
 }

@@ -16,13 +16,13 @@ const logos = [
 
 function LogoItem({ name, src }: { name: string; src: string }) {
   return (
-    <div className="flex items-center justify-center px-8 h-12 flex-shrink-0 opacity-40 hover:opacity-70 transition-opacity duration-300 cursor-default">
+    <div className="flex items-center justify-center px-10 h-14 flex-shrink-0 opacity-40 hover:opacity-70 transition-opacity duration-300 cursor-default">
       <Image
         src={src}
         alt={name}
-        width={120}
-        height={48}
-        className="h-8 w-auto object-contain brightness-0 invert"
+        width={140}
+        height={56}
+        className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
         draggable={false}
       />
     </div>
@@ -36,18 +36,21 @@ export function LogoMarquee() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.6 }}
-      className="relative py-10 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
     >
-      <div className="mx-auto px-6" style={{ maxWidth: 'var(--container-max)' }}>
+      <div className="mx-auto w-full max-w-[var(--container-max)] px-6 md:px-8">
         <p className="text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/25 mb-8">
           Built around the sports you live in
         </p>
       </div>
 
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
-
+      <div
+        className="relative"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+        }}
+      >
         <div className="flex animate-marquee hover:[animation-play-state:paused]">
           <div className="flex flex-shrink-0">
             {logos.map((logo, i) => (

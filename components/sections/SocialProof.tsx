@@ -1,8 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { MessageCircle, Smartphone, Filter, Users } from 'lucide-react'
 import { GlassCard } from '@/components/ui/glass-card'
+import { Section } from '@/components/ui/Section'
+import { Container } from '@/components/ui/Container'
+import { Reveal } from '@/components/visual/Reveal'
 
 const cues = [
   {
@@ -29,25 +31,13 @@ const cues = [
 
 export function SocialProof() {
   return (
-    <section className="relative px-6" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
-      <div className="mx-auto" style={{ maxWidth: 'var(--container-max)' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        >
+    <Section>
+      <Container>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cues.map((cue, i) => (
-            <motion.div
-              key={cue.title}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
+            <Reveal key={cue.title} delay={i * 0.08}>
               <GlassCard className="p-6 h-full">
-                <cue.icon className="h-5 w-5 mb-4" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
+                <cue.icon className="h-5 w-5 mb-4 text-[color:var(--accent)]" strokeWidth={1.5} />
                 <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-white mb-1.5">
                   {cue.title}
                 </p>
@@ -55,10 +45,10 @@ export function SocialProof() {
                   {cue.description}
                 </p>
               </GlassCard>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </Container>
+    </Section>
   )
 }

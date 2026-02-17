@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Container } from '@/components/ui/Container'
 import { scrollToSection } from '@/lib/scroll'
 
 const navLinks = [
@@ -32,7 +33,7 @@ export function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto px-6" style={{ maxWidth: 'var(--container-max)' }}>
+      <Container>
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             <button
@@ -66,7 +67,7 @@ export function Header() {
             Get early access
           </Button>
         </div>
-      </div>
+      </Container>
     </motion.header>
   )
 }

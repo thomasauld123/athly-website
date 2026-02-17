@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { SectionHeading } from '@/components/ui/section-heading'
-import { FloatCluster } from '@/components/visual/FloatCluster'
+import { Section } from '@/components/ui/Section'
+import { Container } from '@/components/ui/Container'
 import { appendWaitlistEntry } from '@/lib/storage'
 import { useToast } from '@/components/ui/use-toast'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Users } from 'lucide-react'
 
 interface FormErrors {
   sport?: string
@@ -70,21 +71,30 @@ export function Waitlist() {
   }
 
   return (
-    <section id="waitlist" className="relative px-6" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
-      <div className="mx-auto relative" style={{ maxWidth: '560px' }}>
-        <FloatCluster variant="invite" className="absolute -right-72 top-24 hidden xl:block opacity-30" />
+    <Section id="waitlist">
+      <Container className="max-w-[560px]">
+        <div className="relative">
+          {/* Floating invite card */}
+          <motion.div
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 6, ease: 'easeInOut', repeat: Infinity }}
+            className="absolute -right-72 top-24 hidden xl:flex glass-surface rounded-xl px-4 py-3 shadow-xl opacity-60 flex-col gap-2.5 w-56"
+          >
+            <div className="flex items-center gap-2">
+              <Users className="h-4 w-4 text-[color:var(--accent)]" />
+              <span className="text-[10px] font-medium text-white/70">Invite wave 1</span>
+            </div>
+            <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div className="h-full w-[20%] rounded-full bg-[color:var(--accent)]" />
+            </div>
+            <p className="text-[9px] text-white/35">Filling up — 20% claimed</p>
+          </motion.div>
 
-        <SectionHeading
-          title="Get early access"
-          subtitle="Tell us who you want to train with and what you're working on. We'll save you a spot."
-        />
+          <SectionHeading
+            title="Get early access"
+            subtitle="Tell us who you want to train with and what you're working on. We'll save you a spot."
+          />
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
           <AnimatePresence mode="wait">
             {submitted ? (
               <motion.div
@@ -92,10 +102,16 @@ export function Waitlist() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.3 }}
-                className="glass rounded-2xl p-10 text-center"
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="glass-surface rounded-2xl p-10 text-center"
               >
-                <CheckCircle2 className="h-10 w-10 mx-auto mb-4" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 15, delay: 0.15 }}
+                >
+                  <CheckCircle2 className="h-10 w-10 mx-auto mb-4 text-[color:var(--accent)]" strokeWidth={1.5} />
+                </motion.div>
                 <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold mb-2">
                   You&apos;re in.
                 </h3>
@@ -114,11 +130,11 @@ export function Waitlist() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.3 }}
                 onSubmit={handleSubmit}
-                className="glass rounded-2xl p-8 space-y-5"
+                className="glass-surface rounded-2xl p-8 space-y-5 backdrop-blur-[32px]"
                 noValidate
               >
                 <div className="space-y-1.5">
-                  <label htmlFor="sport" className="text-sm font-medium text-white/70">
+                  <label htmlFor="sport" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
                     Favourite sport *
                   </label>
                   <Input
@@ -131,7 +147,7 @@ export function Waitlist() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="team" className="text-sm font-medium text-white/70">
+                  <label htmlFor="team" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
                     Favourite team *
                   </label>
                   <Input
@@ -144,7 +160,7 @@ export function Waitlist() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="athlete" className="text-sm font-medium text-white/70">
+                  <label htmlFor="athlete" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
                     Athlete you want to see on Athly *
                   </label>
                   <Input
@@ -157,7 +173,7 @@ export function Waitlist() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="goal" className="text-sm font-medium text-white/70">
+                  <label htmlFor="goal" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
                     What are you training for? *
                   </label>
                   <textarea
@@ -172,8 +188,8 @@ export function Waitlist() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="email" className="text-sm font-medium text-white/70">
-                    Email <span className="text-white/30">(optional, for invites)</span>
+                  <label htmlFor="email" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
+                    Email <span className="text-white/25">(optional, for invites)</span>
                   </label>
                   <Input
                     id="email"
@@ -184,7 +200,7 @@ export function Waitlist() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
+                <Button type="submit" size="lg" className="w-full bg-[color:var(--accent)] text-black hover:bg-[color:var(--accent-2)] border-0">
                   Join the waitlist
                 </Button>
 
@@ -194,8 +210,8 @@ export function Waitlist() {
               </motion.form>
             )}
           </AnimatePresence>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </Container>
+    </Section>
   )
 }

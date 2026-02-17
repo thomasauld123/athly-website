@@ -1,20 +1,36 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
-interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface GlassProps extends React.HTMLAttributes<HTMLDivElement> {
   hover?: boolean
   sheen?: boolean
-  radius?: 'card' | 'panel'
 }
 
-const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
-  ({ className, hover = true, sheen = true, radius = 'card', children, ...props }, ref) => (
+const GlassPanel = React.forwardRef<HTMLDivElement, GlassProps>(
+  ({ className, hover = false, sheen = false, children, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        'glass',
-        radius === 'panel' ? 'rounded-3xl' : 'rounded-2xl',
-        hover && 'glass-hover transition-all duration-300',
+        'glass-surface rounded-3xl',
+        hover && 'glass-interactive',
+        sheen && 'glass-sheen',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+)
+GlassPanel.displayName = 'GlassPanel'
+
+const GlassCard = React.forwardRef<HTMLDivElement, GlassProps>(
+  ({ className, hover = true, sheen = true, children, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        'glass-surface rounded-[18px]',
+        hover && 'glass-interactive',
         sheen && 'glass-sheen',
         className
       )}
@@ -26,4 +42,22 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
 )
 GlassCard.displayName = 'GlassCard'
 
-export { GlassCard }
+const GlassPill = React.forwardRef<HTMLDivElement, GlassProps>(
+  ({ className, hover = false, sheen = false, children, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        'glass-surface rounded-full',
+        hover && 'glass-interactive',
+        sheen && 'glass-sheen',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+)
+GlassPill.displayName = 'GlassPill'
+
+export { GlassPanel, GlassCard, GlassPill }

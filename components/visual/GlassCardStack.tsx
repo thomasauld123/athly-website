@@ -34,13 +34,12 @@ export function GlassCardStack({ cards, className }: GlassCardStackProps) {
               ease: 'easeInOut',
               repeat: Infinity,
             }}
-            className="absolute rounded-2xl bg-white/[0.06] border border-white/[0.10] backdrop-blur-xl p-4 glass-sheen"
+            className="absolute rounded-2xl glass-surface glass-sheen p-4"
             style={{
               width: `${200 - i * 12}px`,
               top: `${i * 20}px`,
               left: `${i * 10}px`,
               zIndex: cards.length - i,
-              boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3)',
             }}
           >
             <p className="text-xs font-medium text-white/70">{card.label}</p>
