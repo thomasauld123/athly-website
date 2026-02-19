@@ -1,6 +1,6 @@
 'use client'
 
-import { MessageCircle, Smartphone, Filter, Users } from 'lucide-react'
+import { MessageCircle, Smartphone, Filter } from 'lucide-react'
 import { GlassCard } from '@/components/ui/glass-card'
 import { Section } from '@/components/ui/Section'
 import { Container } from '@/components/ui/Container'
@@ -9,23 +9,18 @@ import { Reveal } from '@/components/visual/Reveal'
 const cues = [
   {
     icon: MessageCircle,
-    title: 'Direct messaging',
-    description: 'Message within the athlete\'s community for personalised guidance and plan adjustments.',
+    title: 'Direct Messaging',
+    description: 'Chat 1:1 with your favourite athlete to receive personalised guidance and plan adjustments.',
   },
   {
     icon: Filter,
-    title: 'One plan, not ten',
-    description: 'A single consolidated plan instead of scattered advice from random sources.',
+    title: 'One Trusted Plan',
+    description: 'A single consolidated plan, instead of scattered advice from random sources.',
   },
   {
     icon: Smartphone,
-    title: 'Mobile-first, habit-friendly',
-    description: 'Built for daily use. Open, train, track, message. No friction.',
-  },
-  {
-    icon: Users,
-    title: 'Occasional check-ins',
-    description: 'Limited access moments with athletes. Real connection, not a promise of 24/7.',
+    title: 'Mobile-First',
+    description: 'Built for daily use. Open, train, track, message, learn. No friction.',
   },
 ]
 
@@ -33,7 +28,7 @@ export function SocialProof() {
   return (
     <Section>
       <Container>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-3">
           {cues.map((cue, i) => (
             <Reveal key={cue.title} delay={i * 0.08}>
               <GlassCard className="p-6 h-full">

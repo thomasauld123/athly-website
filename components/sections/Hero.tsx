@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { scrollToSection } from '@/lib/scroll'
 import { PhoneMockups } from '@/components/PhoneMockups'
-import { HeroWalkthrough } from '@/components/HeroWalkthrough'
 import { GlassPill } from '@/components/ui/glass-card'
 import { Container } from '@/components/ui/Container'
 import { CalendarCheck, MessageCircle, Phone } from 'lucide-react'
@@ -91,7 +90,6 @@ export function Hero() {
             className="flex justify-center lg:justify-end"
           >
             <PhoneMockups />
-            <HeroWalkthrough />
           </motion.div>
         </div>
       </Container>

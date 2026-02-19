@@ -7,18 +7,18 @@ import { Reveal } from '@/components/visual/Reveal'
 import { RosterCard } from './RosterCard'
 
 const athletes = [
-  { sport: 'AFL', gradient: 'from-emerald-600 to-teal-800' },
-  { sport: 'Cricket', gradient: 'from-sky-600 to-blue-800' },
-  { sport: 'NRL', gradient: 'from-amber-600 to-orange-800' },
-  { sport: 'Football', gradient: 'from-rose-600 to-pink-800' },
-  { sport: 'Olympics', gradient: 'from-indigo-600 to-violet-800' },
-  { sport: 'Surf', gradient: 'from-cyan-600 to-teal-800' },
-  { sport: 'Basketball', gradient: 'from-orange-600 to-red-800' },
-  { sport: 'Netball', gradient: 'from-pink-600 to-rose-800' },
-  { sport: 'Tennis', gradient: 'from-lime-600 to-green-800' },
-  { sport: 'Rugby', gradient: 'from-yellow-600 to-amber-800' },
-  { sport: 'Swimming', gradient: 'from-blue-600 to-indigo-800' },
-  { sport: 'Athletics', gradient: 'from-red-600 to-rose-800' },
+  { sport: 'AFL' },
+  { sport: 'Cricket' },
+  { sport: 'NRL' },
+  { sport: 'Football' },
+  { sport: 'Olympics' },
+  { sport: 'Surf' },
+  { sport: 'Basketball' },
+  { sport: 'Netball' },
+  { sport: 'Tennis' },
+  { sport: 'Rugby' },
+  { sport: 'Swimming' },
+  { sport: 'Athletics' },
 ]
 
 const row1 = athletes.slice(0, 6)
