@@ -42,7 +42,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-[clamp(1rem,2vw,1.125rem)] text-[color:var(--text-muted)] max-w-md mb-8 leading-relaxed"
             >
-              A weekly plan, direct messaging, and real guidance — built around the athletes you trust.
+              You're training for something real. Get a weekly plan, direct guidance, and real accountability — from athletes who've been where you want to go.
             </motion.p>
 
             <motion.div

@@ -7,18 +7,18 @@ import { Reveal } from '@/components/visual/Reveal'
 import { RosterCard } from './RosterCard'
 
 const athletes = [
-  { sport: 'AFL' },
-  { sport: 'Cricket' },
-  { sport: 'NRL' },
-  { sport: 'Football' },
-  { sport: 'Olympics' },
-  { sport: 'Surf' },
-  { sport: 'Basketball' },
-  { sport: 'Netball' },
-  { sport: 'Tennis' },
-  { sport: 'Rugby' },
-  { sport: 'Swimming' },
-  { sport: 'Athletics' },
+  { sport: 'AFL', credential: '200+ games, All-Australian' },
+  { sport: 'Cricket', credential: 'International Test squad' },
+  { sport: 'NRL', credential: 'State of Origin representative' },
+  { sport: 'Football', credential: 'A-League Golden Boot winner' },
+  { sport: 'Olympics', credential: '3× Olympic medallist' },
+  { sport: 'Surf', credential: 'World Tour competitor' },
+  { sport: 'Basketball', credential: 'NBL championship winner' },
+  { sport: 'Netball', credential: 'Diamonds squad member' },
+  { sport: 'Tennis', credential: 'Grand Slam quarterfinalist' },
+  { sport: 'Rugby', credential: 'Wallabies centurion' },
+  { sport: 'Swimming', credential: 'Olympic gold medallist' },
+  { sport: 'Athletics', credential: 'Commonwealth Games finalist' },
 ]
 
 const row1 = athletes.slice(0, 6)

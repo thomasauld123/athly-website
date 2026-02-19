@@ -20,19 +20,19 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Athly — Train with athletes you trust',
   description:
-    'One plan you can actually follow, shaped by the athletes you trust. Personalised training guidance, progress tracking, and a community that keeps you consistent.',
+    'You\'re training for something real. Get a weekly plan, direct guidance, and real accountability — from athletes who\'ve been where you want to go.',
   openGraph: {
     type: 'website',
     title: 'Athly — Train with athletes you trust',
     description:
-      'One plan you can actually follow, shaped by the athletes you trust. Personalised training guidance, progress tracking, and a community that keeps you consistent.',
+      'You\'re training for something real. Get a weekly plan, direct guidance, and real accountability — from athletes who\'ve been where you want to go.',
     siteName: 'Athly',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Athly — Train with athletes you trust',
     description:
-      'One plan you can actually follow, shaped by the athletes you trust.',
+      'You\'re training for something real. Get a weekly plan, direct guidance, and real accountability — from athletes who\'ve been where you want to go.',
   },
 }
 

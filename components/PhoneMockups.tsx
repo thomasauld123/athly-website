@@ -151,22 +151,6 @@ function CheckInScreen() {
   )
 }
 
-function FloatingNotification() {
-  return (
-    <motion.div
-      animate={{ y: [0, -4, 0] }}
-      transition={{ ...FLOAT, delay: 1.5 }}
-      className="absolute -right-4 top-16 z-30 glass-surface rounded-xl px-3.5 py-2.5 flex items-center gap-2.5 shadow-xl"
-    >
-      <CheckCircle2 className="h-4 w-4 text-[color:var(--accent)] flex-shrink-0" />
-      <div>
-        <p className="text-[10px] font-medium text-white/80">Plan updated</p>
-        <p className="text-[9px] text-white/40">Week 4 — speed endurance</p>
-      </div>
-    </motion.div>
-  )
-}
-
 export function PhoneMockups() {
   return (
     <div className="relative w-full max-w-[380px] mx-auto lg:mx-0 h-[520px] sm:h-[560px]">
@@ -188,7 +172,6 @@ export function PhoneMockups() {
         <MessagingScreen />
       </motion.div>
 
-      <FloatingNotification />
     </div>
   )
 }
