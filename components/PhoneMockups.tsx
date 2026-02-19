@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 
 const FLOAT = { duration: 6, ease: 'easeInOut' as const, repeat: Infinity }
 
-function StatusBar() {
+export function StatusBar() {
   return (
     <div className="flex items-center justify-between px-5 pt-3 pb-1">
       <span className="text-[10px] font-medium text-white/50">9:41</span>
@@ -27,7 +27,7 @@ function StatusBar() {
   )
 }
 
-function Notch() {
+export function Notch() {
   return (
     <div className="flex justify-center pt-1">
       <div className="w-[90px] h-[22px] bg-black rounded-full" />

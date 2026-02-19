@@ -4,15 +4,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { scrollToSection } from '@/lib/scroll'
 import { PhoneMockups } from '@/components/PhoneMockups'
-import { GlassPill } from '@/components/ui/glass-card'
 import { Container } from '@/components/ui/Container'
-import { CalendarCheck, MessageCircle, Phone } from 'lucide-react'
-
-const bullets = [
-  { icon: CalendarCheck, label: 'One consolidated weekly plan' },
-  { icon: MessageCircle, label: 'Athlete-guided adjustments' },
-  { icon: Phone, label: 'Messaging + calling' },
-]
 
 export function Hero() {
   return (
@@ -49,20 +41,6 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.55 }}
-              className="flex flex-wrap gap-3 mb-8"
-            >
-              {bullets.map((b) => (
-                <GlassPill key={b.label} className="flex items-center gap-2 px-4 py-2">
-                  <b.icon className="h-3.5 w-3.5 text-[color:var(--accent)]" strokeWidth={1.5} />
-                  <span className="text-xs text-white/60">{b.label}</span>
-                </GlassPill>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
               className="flex flex-col sm:flex-row items-start gap-4 mb-4"
             >
               <Button size="lg" onClick={() => scrollToSection('waitlist')}>
@@ -76,7 +54,7 @@ export function Hero() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="text-xs text-[color:var(--text-dim)]"
             >
               Coming soon.
