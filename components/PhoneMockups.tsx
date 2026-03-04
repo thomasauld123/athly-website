@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, MotionStyle } from 'framer-motion'
 import { Lock, Send, Play, CheckCircle2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
@@ -151,27 +151,39 @@ function CheckInScreen() {
   )
 }
 
-export function PhoneMockups() {
+interface PhoneMockupsProps {
+  backStyle?: MotionStyle
+  frontStyle?: MotionStyle
+}
+
+export function PhoneMockups({ backStyle, frontStyle }: PhoneMockupsProps) {
   return (
     <div className="relative w-full max-w-[380px] mx-auto lg:mx-0 h-[520px] sm:h-[560px]">
+      {/* Back phone (CheckInScreen) — moves slower on parallax */}
       <motion.div
         animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
         transition={FLOAT}
+        style={{
+          boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.08), 0 25px 50px -12px rgba(0,0,0,0.5)',
+          ...backStyle,
+        }}
         className="absolute top-0 left-0 w-[220px] sm:w-[240px] h-[420px] sm:h-[460px] rounded-[32px] bg-white/[0.06] border border-white/[0.12] backdrop-blur-xl shadow-2xl shadow-black/40 overflow-hidden z-10 opacity-70"
-        style={{ boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.08), 0 25px 50px -12px rgba(0,0,0,0.5)' }}
       >
         <CheckInScreen />
       </motion.div>
 
+      {/* Front phone (MessagingScreen) — moves at medium rate on parallax */}
       <motion.div
         animate={{ y: [0, 6, 0], rotate: [1, -0.5, 1] }}
         transition={FLOAT}
+        style={{
+          boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.1), 0 25px 50px -12px rgba(0,0,0,0.6)',
+          ...frontStyle,
+        }}
         className="absolute top-12 right-0 w-[240px] sm:w-[260px] h-[460px] sm:h-[500px] rounded-[32px] bg-white/[0.08] border border-white/[0.14] backdrop-blur-xl shadow-2xl shadow-black/50 overflow-hidden z-20"
-        style={{ boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.1), 0 25px 50px -12px rgba(0,0,0,0.6)' }}
       >
         <MessagingScreen />
       </motion.div>
-
     </div>
   )
 }
