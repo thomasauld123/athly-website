@@ -1,28 +1,14 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { scrollToSection } from '@/lib/scroll'
 import { PhoneMockups } from '@/components/PhoneMockups'
 import { Container } from '@/components/ui/Container'
 
 export function Hero() {
-  const heroRef = useRef<HTMLElement>(null)
-  const reduced = useReducedMotion()
-
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const textY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -60])
-  const textOpacity = useTransform(scrollYProgress, [0, 0.6], reduced ? [1, 1] : [1, 0])
-  const phoneFrontY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -40])
-  const phoneBackY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -20])
-
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Green accent glow behind phones */}
       <div
         className="absolute top-1/2 right-[20%] -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] pointer-events-none"
@@ -32,7 +18,7 @@ export function Hero() {
 
       <Container className="relative z-10 pt-24 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div style={{ y: textY, opacity: textOpacity }}>
+          <div>
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -73,7 +59,7 @@ export function Hero() {
             >
               Coming soon.
             </motion.p>
-          </motion.div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -81,10 +67,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex justify-center lg:justify-end"
           >
-            <PhoneMockups
-              backStyle={{ y: phoneBackY }}
-              frontStyle={{ y: phoneFrontY }}
-            />
+            <PhoneMockups />
           </motion.div>
         </div>
       </Container>

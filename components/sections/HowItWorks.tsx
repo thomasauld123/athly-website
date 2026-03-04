@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence, useScroll, useMotionValueEvent, useReducedMotion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, MessageCircle, CheckCircle2, Check } from 'lucide-react'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Section } from '@/components/ui/Section'
 import { Container } from '@/components/ui/Container'
-import { staggerContainer, fadeSlideItem, staticVariants } from '@/lib/motion'
+import { Reveal } from '@/components/visual/Reveal'
 
 type PillType = 'intensity' | 'rest' | 'message' | 'update' | 'checkin'
 
@@ -104,32 +104,9 @@ function PillBadge({ pill }: { pill: { label: string; type: PillType } }) {
 
 export function HowItWorks() {
   const [selected, setSelected] = useState(personaOptions[0])
-  const [activeDay, setActiveDay] = useState<number | null>(null)
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const reduced = useReducedMotion()
-
   const plan = personas[selected]
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 0.85', 'end 0.15'],
-  })
-
-  // Drive active day highlight based on vertical scroll progress through section
-  useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    if (!reduced) {
-      setActiveDay(Math.min(6, Math.max(0, Math.round(v * 6))))
-    }
-  })
-
-  const containerVariant = reduced ? staticVariants : staggerContainer
-  const itemVariant = reduced ? staticVariants : fadeSlideItem
-
-  // Determine which day index is highlighted: scroll-driven on desktop, data-driven fallback
-  const highlightIndex = activeDay !== null ? activeDay : plan.days.findIndex((d) => d.highlight)
-
   return (
-    <div ref={sectionRef}>
     <Section id="how-it-works">
       <Container>
         {/* Interactive subtitle with dropdown */}
@@ -142,10 +119,7 @@ export function HowItWorks() {
             <span className="relative inline-flex items-center">
               <select
                 value={selected}
-                onChange={(e) => {
-                  setSelected(e.target.value)
-                  setActiveDay(null) // reset to data-driven highlight on persona change
-                }}
+                onChange={(e) => setSelected(e.target.value)}
                 className="appearance-none bg-white/[0.06] border border-white/10 rounded-lg pl-3 pr-8 py-1 text-white font-medium text-base focus:border-[color:var(--accent-border)] focus:outline-none focus:ring-1 focus:ring-[color:var(--accent-border)] cursor-pointer transition-colors"
                 style={{ colorScheme: 'dark' }}
               >
@@ -162,38 +136,36 @@ export function HowItWorks() {
         </div>
       </Container>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={selected}
-          initial="hidden"
-          animate="show"
-          exit={{ opacity: 0, transition: { duration: 0.2 } }}
-          variants={containerVariant}
-        >
-          <div
-            className="relative"
-            style={{
-              maskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
-            }}
+      <Reveal>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selected}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
             <div
-              className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 px-6 md:px-8"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              className="relative"
+              style={{
+                maskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+              }}
             >
-              {plan.days.map((d, i) => {
-                const isActive = i === highlightIndex
-                return (
-                  <motion.div
+              <div
+                className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 px-6 md:px-8"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {plan.days.map((d) => (
+                  <div
                     key={d.day}
-                    variants={itemVariant}
                     className={`w-[180px] flex-shrink-0 snap-start rounded-2xl p-4 backdrop-blur-xl transition-all duration-300 ${
-                      isActive
+                      d.highlight
                         ? 'bg-white/[0.06] border border-[color:var(--accent-border)]'
                         : 'bg-white/[0.04] border border-white/[0.07]'
                     }`}
                   >
-                    <p className={`text-[10px] font-bold uppercase tracking-widest mb-3 ${isActive ? 'text-[color:var(--accent)]' : 'text-white/30'}`}>
+                    <p className={`text-[10px] font-bold uppercase tracking-widest mb-3 ${d.highlight ? 'text-[color:var(--accent)]' : 'text-white/30'}`}>
                       {d.day}
                     </p>
                     <p className="text-[13px] font-semibold text-white/80 leading-tight mb-1.5">
@@ -203,18 +175,17 @@ export function HowItWorks() {
                       {d.details}
                     </p>
                     <PillBadge pill={d.pill} />
-                  </motion.div>
-                )
-              })}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+          </motion.div>
+        </AnimatePresence>
 
-      <p className="text-sm text-white/35 text-center mt-8 px-6">
-        Every week adapts. Message your athlete, adjust the plan, stay on track.
-      </p>
+        <p className="text-sm text-white/35 text-center mt-8 px-6">
+          Every week adapts. Message your athlete, adjust the plan, stay on track.
+        </p>
+      </Reveal>
     </Section>
-    </div>
   )
 }

@@ -1,9 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
-import { staggerContainer, fadeSlideItem, staticVariants } from '@/lib/motion'
 
 const stats = [
   { value: 1240, suffix: '+', label: 'on the waitlist' },
@@ -37,8 +35,19 @@ function useCountUp(target: number, inView: boolean) {
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-40px' })
+  const [inView, setInView] = useState(false)
   const count = useCountUp(value, inView)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true) },
+      { threshold: 0.5 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div ref={ref} className="text-center">
@@ -51,26 +60,14 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
 }
 
 export function ProofStrip() {
-  const reduced = useReducedMotion()
-  const containerVariant = reduced ? staticVariants : staggerContainer
-  const itemVariant = reduced ? staticVariants : fadeSlideItem
-
   return (
     <section className="py-10 md:py-14 border-y border-white/5">
       <Container>
-        <motion.div
-          className="grid grid-cols-3 gap-6"
-          variants={containerVariant}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
+        <div className="grid grid-cols-3 gap-6">
           {stats.map((stat) => (
-            <motion.div key={stat.label} variants={itemVariant}>
-              <StatItem {...stat} />
-            </motion.div>
+            <StatItem key={stat.label} {...stat} />
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   )
