@@ -1,7 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const logos = [
   { name: 'Logo 1', src: '/LOGO 1.svg' },
@@ -30,16 +34,36 @@ function LogoItem({ name, src }: { name: string; src: string }) {
 }
 
 export function LogoMarquee() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const labelRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const ctx = gsap.context(() => {
+      gsap.from([labelRef.current], {
+        opacity: 0,
+        y: 12,
+        duration: 0.6,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 85%',
+          once: true,
+        },
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.6 }}
-      className="relative py-12 md:py-16 overflow-hidden"
-    >
+    <section ref={sectionRef} className="relative py-12 md:py-16 overflow-hidden">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-6 md:px-8">
-        <p className="text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/25 mb-8">
+        <p
+          ref={labelRef}
+          className="text-center font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.2em] text-white/25 mb-8"
+        >
           Built around the sports you live in
         </p>
       </div>
@@ -69,6 +93,6 @@ export function LogoMarquee() {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   )
 }
