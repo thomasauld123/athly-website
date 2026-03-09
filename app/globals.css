@@ -267,7 +267,8 @@ body::before {
     scroll-padding-top: 64px;
   }
   #hero > div:first-child {
-    padding-top: 64px !important;
+    top: 64px !important;
+    height: calc(100vh - 64px) !important;
   }
   .phone-mockups-wrap {
     transform: scale(0.8);
