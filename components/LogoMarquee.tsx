@@ -8,14 +8,16 @@ import Image from 'next/image'
 gsap.registerPlugin(ScrollTrigger)
 
 const logos = [
-  { name: 'Logo 1', src: '/LOGO 1.svg' },
-  { name: 'Logo 2', src: '/LOGO 2.png' },
-  { name: 'Logo 3', src: '/LOGO 3.png' },
-  { name: 'Logo 4', src: '/LOGO 4.png' },
-  { name: 'Logo 5', src: '/LOGO 5.png' },
-  { name: 'Logo 6', src: '/LOGO 6.jpg' },
-  { name: 'Logo 7', src: '/LOGO 7.jpg' },
-  { name: 'Logo 8', src: '/LOGO 8.svg' },
+  { name: 'Logo 1', src: '/logo-1.svg' },
+  { name: 'Logo 2', src: '/logo-2.png' },
+  { name: 'Logo 3', src: '/logo-3.png' },
+  { name: 'Logo 4', src: '/logo-4.png' },
+  { name: 'Logo 5', src: '/logo-5.png' },
+  { name: 'Logo 6', src: '/logo-6.jpg' },
+  { name: 'Logo 7', src: '/logo-7.jpg' },
+  { name: 'Logo 8', src: '/logo-8.svg' },
+  { name: 'Logo 9', src: '/logo-9.png' },
+  { name: 'Logo 10', src: '/logo-10.png' },
 ]
 
 function LogoItem({ name, src }: { name: string; src: string }) {
