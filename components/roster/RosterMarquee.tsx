@@ -62,14 +62,14 @@ export function RosterMarquee() {
     <div ref={containerRef} id="athletes" style={{ position: 'relative', height: '450vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
-        className="relative flex flex-col items-center justify-center bg-[#050505]"
+        className="relative flex flex-col items-center justify-center bg-[#060D18]"
       >
         {/* Center spotlight */}
         <div
           ref={spotlightRef}
           aria-hidden="true"
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(200,255,0,0.04) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%)' }}
         />
 
         <span className="scene-label">ROSTER — 06</span>

@@ -1,26 +1,27 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { Bebas_Neue, Space_Mono, DM_Sans } from 'next/font/google'
+import { Barlow_Condensed, Barlow, JetBrains_Mono } from 'next/font/google'
 import { Toaster } from '@/components/ui/toaster'
 import './globals.css'
 
-const bebasNeue = Bebas_Neue({
+const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['600', '700', '900'],
   display: 'swap',
   variable: '--font-display',
 })
 
-const spaceMono = Space_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
   display: 'swap',
   variable: '--font-mono',
 })
 
-const dmSans = DM_Sans({
+const barlow = Barlow({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '900'],
+  style: ['normal', 'italic'],
   display: 'swap',
   variable: '--font-body',
 })
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${bebasNeue.variable} ${spaceMono.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${barlowCondensed.variable} ${jetbrainsMono.variable} ${barlow.variable}`}>
       <body className="min-h-screen antialiased">
         {children}
         <Toaster />

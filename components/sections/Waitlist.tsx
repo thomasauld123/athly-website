@@ -115,7 +115,7 @@ export function Waitlist() {
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 50% 60% at 50% 50%, rgba(200,255,0,0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,212,255,0.03) 0%, transparent 70%)',
         }}
       />
 

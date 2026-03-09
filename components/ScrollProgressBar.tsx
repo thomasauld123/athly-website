@@ -29,7 +29,7 @@ export function ScrollProgressBar() {
         height: '3px',
         width: '0%',
         background: 'var(--accent)',
-        boxShadow: '0 0 20px rgba(200,255,0,0.5)',
+        boxShadow: '0 0 20px rgba(0,212,255,0.5)',
         zIndex: 9999,
         pointerEvents: 'none',
         transition: 'width 50ms linear',

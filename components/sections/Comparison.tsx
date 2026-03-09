@@ -71,12 +71,12 @@ export function Comparison() {
     <div ref={containerRef} style={{ position: 'relative', height: '240vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
-        className="relative flex flex-col items-center justify-center bg-[#050505] px-4"
+        className="relative flex flex-col items-center justify-center bg-[#060D18] px-4"
       >
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 40% 50% at 50% 50%, rgba(200,255,0,0.025) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 40% 50% at 50% 50%, rgba(0,212,255,0.025) 0%, transparent 70%)' }}
         />
 
         <span className="scene-label">COMPARISON — 04</span>

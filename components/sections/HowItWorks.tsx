@@ -149,10 +149,10 @@ export function HowItWorks() {
     <div ref={containerRef} id="how-it-works" style={{ position: 'relative', height: '360vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
-        className="relative flex flex-col bg-[#050505]"
+        className="relative flex flex-col bg-[#060D18]"
       >
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 30%, rgba(200,255,0,0.025) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 40% at 50% 30%, rgba(0,212,255,0.025) 0%, transparent 70%)',
         }} />
 
         <span className="scene-label">WEEK — 05</span>
@@ -179,7 +179,7 @@ export function HowItWorks() {
                 style={{ colorScheme: 'dark' }}
               >
                 {personaOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-[#0a0a0a]">{opt}</option>
+                  <option key={opt} value={opt} className="bg-[#060D18]">{opt}</option>
                 ))}
               </select>
               <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/40 pointer-events-none" strokeWidth={2} />

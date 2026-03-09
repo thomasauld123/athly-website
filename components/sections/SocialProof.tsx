@@ -239,10 +239,10 @@ export function SocialProof() {
     <div ref={containerRef} style={{ position: 'relative', height: '420vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
-        className="relative flex flex-col items-center justify-center bg-[#050505]"
+        className="relative flex flex-col items-center justify-center bg-[#060D18]"
       >
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
-          background: 'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(200,255,0,0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0,212,255,0.03) 0%, transparent 70%)',
         }} />
 
         <span className="scene-label">FEATURES — 03</span>

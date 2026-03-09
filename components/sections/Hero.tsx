@@ -47,13 +47,13 @@ export function Hero() {
     <div ref={containerRef} style={{ position: 'relative', height: '200vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
-        className="relative flex items-center bg-[#050505]"
+        className="relative flex items-center bg-[#060D18]"
       >
         {/* Accent glow behind phones */}
         <div
           aria-hidden="true"
           className="absolute top-1/2 right-[20%] -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(200,255,0,0.4) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.4) 0%, transparent 70%)' }}
         />
 
         <Container className="relative z-10 pt-24 pb-16">
