@@ -106,14 +106,16 @@ export function HowItWorks() {
       const cardWidth = 188 + 12 // card + gap
       const totalCards = 7
       const xDistance = -(cardWidth * (totalCards - 1))
+      const trackWidth = 188 * totalCards + 12 * (totalCards - 1) // 1388px
+      const initialX = Math.max(24, (window.innerWidth - trackWidth) / 2)
 
       const tl = gsap.timeline({ paused: true, defaults: { ease: 'none' } })
 
       // Heading entrance at start
       tl.from(headingRef.current, { opacity: 0, y: 16, duration: 0.2, ease: 'power3.out' }, 0)
 
-      // Card track scrolls horizontally
-      tl.fromTo(track, { x: 0 }, { x: xDistance, duration: 0.8 }, 0.1)
+      // Card track scrolls horizontally, starting centered on wide viewports
+      tl.fromTo(track, { x: initialX }, { x: initialX + xDistance, duration: 0.8 }, 0.1)
 
       // Cards fade in staggered at start
       tl.from(track.querySelectorAll('.day-card'), {
@@ -128,7 +130,7 @@ export function HowItWorks() {
         trigger: container,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1.5,
+        scrub: 0.9,
         animation: tl,
       })
     }, container)
@@ -143,8 +145,8 @@ export function HowItWorks() {
   const days = personas[selected]
 
   return (
-    /* 600vh: 100vh visible + 500vh scroll space */
-    <div ref={containerRef} id="how-it-works" style={{ position: 'relative', height: '600vh' }}>
+    /* 360vh: 100vh visible + 260vh scroll space */
+    <div ref={containerRef} id="how-it-works" style={{ position: 'relative', height: '360vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
         className="relative flex flex-col bg-[#050505]"
@@ -196,7 +198,7 @@ export function HowItWorks() {
         >
           <div
             ref={trackRef}
-            className="flex gap-3 pl-6 md:pl-12 will-change-transform"
+            className="flex gap-3 will-change-transform"
             style={{ willChange: 'transform' }}
           >
             {days.map((d) => (

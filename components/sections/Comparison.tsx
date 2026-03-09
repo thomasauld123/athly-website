@@ -58,7 +58,7 @@ export function Comparison() {
         trigger: containerRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1.2,
+        scrub: 0.7,
         animation: tl,
       })
     }, containerRef)
@@ -67,8 +67,8 @@ export function Comparison() {
   }, [])
 
   return (
-    /* 400vh: 100vh visible + 300vh scroll space */
-    <div ref={containerRef} style={{ position: 'relative', height: '400vh' }}>
+    /* 240vh: 100vh visible + 140vh scroll space */
+    <div ref={containerRef} style={{ position: 'relative', height: '240vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
         className="relative flex flex-col items-center justify-center bg-[#050505] px-4"

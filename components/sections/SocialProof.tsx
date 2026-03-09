@@ -225,7 +225,7 @@ export function SocialProof() {
         trigger: containerRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1.5,
+        scrub: 0.9,
         animation: tl,
       })
     }, containerRef)
@@ -235,8 +235,8 @@ export function SocialProof() {
   }, [])
 
   return (
-    /* 700vh: 100vh visible + 600vh scroll space */
-    <div ref={containerRef} style={{ position: 'relative', height: '700vh' }}>
+    /* 420vh: 100vh visible + 320vh scroll space */
+    <div ref={containerRef} style={{ position: 'relative', height: '420vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
         className="relative flex flex-col items-center justify-center bg-[#050505]"
