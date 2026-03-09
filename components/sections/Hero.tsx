@@ -44,7 +44,7 @@ export function Hero() {
   }, [])
 
   return (
-    <div ref={containerRef} style={{ position: 'relative', height: '200vh' }}>
+    <div id="hero" ref={containerRef} style={{ position: 'relative', height: '200vh' }}>
       <div
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
         className="relative flex items-center bg-[#060D18]"
@@ -56,7 +56,7 @@ export function Hero() {
           style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.4) 0%, transparent 70%)' }}
         />
 
-        <Container className="relative z-10 pt-24 pb-16">
+        <Container className="relative z-10 pt-[60px] pb-[60px] md:pt-24 md:pb-16">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Text column */}
             <div ref={textRef}>

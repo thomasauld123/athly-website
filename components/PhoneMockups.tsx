@@ -153,7 +153,7 @@ function CheckInScreen() {
 
 export function PhoneMockups() {
   return (
-    <div className="relative w-full max-w-[380px] mx-auto lg:mx-0 h-[520px] sm:h-[560px]">
+    <div className="phone-mockups-wrap relative w-full max-w-[380px] mx-auto lg:mx-0 h-[520px] sm:h-[560px]">
       <motion.div
         animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
         transition={FLOAT}

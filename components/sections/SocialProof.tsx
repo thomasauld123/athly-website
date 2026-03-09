@@ -281,7 +281,7 @@ export function SocialProof() {
 
           {/* Phone frame */}
           <div
-            className="relative w-[260px] sm:w-[280px] h-[480px] rounded-[32px] overflow-hidden"
+            className="features-phone-frame relative w-[260px] sm:w-[280px] h-[480px] rounded-[32px] overflow-hidden"
             style={{
               background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.10)',
