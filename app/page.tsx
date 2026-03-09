@@ -11,12 +11,10 @@ import { ComingSoon } from '@/components/sections/ComingSoon'
 import { Waitlist } from '@/components/sections/Waitlist'
 import { Footer } from '@/components/sections/Footer'
 import { CursorGlow } from '@/components/visual/CursorGlow'
-import { ScrollProgressBar } from '@/components/ScrollProgressBar'
 
 export default function Home() {
   return (
     <>
-      <ScrollProgressBar />
       <CursorGlow />
       <Header />
       <Hero />
