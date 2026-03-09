@@ -159,12 +159,12 @@ export function HowItWorks() {
 
         {/* Heading + dropdown */}
         <div ref={headingRef} className="pt-16 pb-8 px-6 md:px-10 text-center relative z-10">
-          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--accent)' }}>
+          <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--fog)' }}>
             Your week on Athly
           </p>
           <h2
-            className="font-[family-name:var(--font-display)] tracking-tight text-white mb-5"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
+            className="font-[family-name:var(--font-display)] tracking-tight text-white mb-5 uppercase"
+            style={{ fontSize: 'clamp(1.6rem, 3.6vw, 2.7rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.97 }}
           >
             Your week on Athly
           </h2>

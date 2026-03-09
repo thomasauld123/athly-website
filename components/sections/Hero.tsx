@@ -60,11 +60,11 @@ export function Hero() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Text column */}
             <div ref={textRef}>
-              <h1 className="font-[family-name:var(--font-display)] text-[clamp(2.625rem,6vw,4.5rem)] tracking-tight leading-[1.06] mb-5">
+              <h1 className="font-[family-name:var(--font-display)] text-[clamp(2.375rem,5.4vw,4rem)] uppercase leading-[0.97] mb-5" style={{ fontWeight: 900, letterSpacing: '-0.01em' }}>
                 Personal coaching from your favourite athlete.
               </h1>
 
-              <p className="text-[clamp(1rem,2vw,1.125rem)] text-[color:var(--text-muted)] max-w-md mb-8 leading-relaxed">
+              <p className="text-[15px] leading-[1.7] max-w-md mb-8" style={{ color: 'var(--fog)' }}>
                 You&apos;re training for something real. Get a weekly plan, direct guidance,
                 and real accountability — from athletes who&apos;ve been where you want to go.
               </p>

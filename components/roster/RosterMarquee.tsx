@@ -76,16 +76,16 @@ export function RosterMarquee() {
 
         {/* Heading */}
         <div ref={headingRef} className="text-center mb-12 px-6 relative z-10">
-          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--accent)' }}>
+          <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--fog)' }}>
             Launch roster
           </p>
           <h2
-            className="font-[family-name:var(--font-display)] tracking-tight text-white"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
+            className="font-[family-name:var(--font-display)] tracking-tight text-white uppercase"
+            style={{ fontSize: 'clamp(1.6rem, 3.6vw, 2.7rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.97 }}
           >
             Launch roster
           </h2>
-          <p className="text-white/40 mt-2 text-sm max-w-sm mx-auto">
+          <p className="text-[15px] leading-[1.7] mt-2 max-w-sm mx-auto" style={{ color: 'var(--fog)' }}>
             Names stay hidden until launch. Waitlist members influence who drops first.
           </p>
         </div>

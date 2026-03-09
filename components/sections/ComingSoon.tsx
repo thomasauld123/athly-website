@@ -73,23 +73,23 @@ export function ComingSoon() {
       <Container>
         <div className="max-w-[640px] mx-auto">
           <div ref={headingRef} className="text-center mb-10">
-            <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--accent)' }}>
+            <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--fog)' }}>
               Timeline
             </p>
             <h2
-              className="font-[family-name:var(--font-display)] tracking-tight text-white mb-3"
-              style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
+              className="font-[family-name:var(--font-display)] tracking-tight text-white mb-3 uppercase"
+              style={{ fontSize: 'clamp(1.6rem, 3.6vw, 2.7rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.97 }}
             >
               Coming soon
             </h2>
-            <p className="text-white/45 text-sm leading-relaxed max-w-md mx-auto">
+            <p className="text-[15px] leading-[1.7] max-w-md mx-auto" style={{ color: 'var(--fog)' }}>
               We&apos;re building Athly now. When it&apos;s ready, we&apos;ll open access in waves — starting with the waitlist.
             </p>
           </div>
 
           <div ref={panelRef}>
             <GlassPanel className="p-6 md:p-8">
-              <p className="font-[family-name:var(--font-mono)] text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 mb-6">
+              <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-6" style={{ color: 'var(--fog)' }}>
                 Questions
               </p>
               <Accordion type="single" collapsible className="w-full">

@@ -19,7 +19,7 @@ export function SectionHeading({ title, subtitle, className, align = 'center' }:
         className
       )}
     >
-      <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,4vw,2.25rem)] tracking-tight mb-4" style={{ fontWeight: 650, letterSpacing: '-0.02em' }}>
+      <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.58rem,3.6vw,2rem)] uppercase leading-[0.97] mb-4" style={{ fontWeight: 900, letterSpacing: '-0.01em' }}>
         {title}
       </h2>
       {subtitle && (

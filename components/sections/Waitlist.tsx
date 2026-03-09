@@ -122,16 +122,16 @@ export function Waitlist() {
       <Container className="max-w-[560px] relative z-10">
         {/* Heading */}
         <div ref={headingRef} className="text-center mb-10">
-          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--accent)' }}>
+          <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--fog)' }}>
             Early access
           </p>
           <h2
-            className="font-[family-name:var(--font-display)] tracking-tight text-white mb-3"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
+            className="font-[family-name:var(--font-display)] tracking-tight text-white mb-3 uppercase"
+            style={{ fontSize: 'clamp(1.6rem, 3.6vw, 2.7rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.97 }}
           >
             Get early access
           </h2>
-          <p className="text-white/45 text-sm leading-relaxed max-w-md mx-auto">
+          <p className="text-[15px] leading-[1.7] max-w-md mx-auto" style={{ color: 'var(--fog)' }}>
             Tell us who you want to train with and what you&apos;re working on. We&apos;ll save you a spot.
           </p>
         </div>

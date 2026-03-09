@@ -29,7 +29,7 @@ export function Header() {
       transition={{ duration: 0.5, delay: 0.1 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-black/60 backdrop-blur-xl border-b border-white/5'
+          ? 'bg-[#060D18]/95 backdrop-blur-xl border-b border-[#2D4A6E]/60'
           : 'bg-transparent'
       }`}
     >
@@ -38,7 +38,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight text-white"
+              className="font-[family-name:var(--font-display)] text-xl font-black tracking-[0.04em] uppercase text-white"
             >
               Athly
             </button>
@@ -52,7 +52,8 @@ export function Header() {
               <button
                 key={link.target}
                 onClick={() => scrollToSection(link.target)}
-                className="text-sm text-white/50 transition-colors hover:text-white"
+                className="text-[13px] font-semibold transition-colors hover:text-white"
+                style={{ color: 'var(--fog)' }}
               >
                 {link.label}
               </button>
@@ -62,7 +63,7 @@ export function Header() {
           <Button
             size="sm"
             onClick={() => scrollToSection('waitlist')}
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex bg-[#0A1628] text-white hover:bg-[#1E3A5F] border border-[#2D4A6E]"
           >
             Get early access
           </Button>

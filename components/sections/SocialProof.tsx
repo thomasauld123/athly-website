@@ -249,16 +249,16 @@ export function SocialProof() {
 
         {/* Heading */}
         <div ref={headingRef} className="text-center mb-10 px-6 relative z-10">
-          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--accent)' }}>
+          <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--fog)' }}>
             The platform
           </p>
           <h2
-            className="font-[family-name:var(--font-display)] tracking-tight text-white leading-tight"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
+            className="font-[family-name:var(--font-display)] tracking-tight text-white leading-tight uppercase"
+            style={{ fontSize: 'clamp(1.6rem, 3.6vw, 2.7rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.97 }}
           >
             Built around how you actually train
           </h2>
-          <p className="text-white/40 mt-3 text-sm max-w-md mx-auto">
+          <p className="text-[15px] leading-[1.7] mt-3 max-w-md mx-auto" style={{ color: 'var(--fog)' }}>
             Not another dashboard you&apos;ll forget to open. One place for your plan, your athlete, and your progress.
           </p>
         </div>

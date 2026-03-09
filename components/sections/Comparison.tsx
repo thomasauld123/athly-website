@@ -83,16 +83,16 @@ export function Comparison() {
 
         {/* Heading */}
         <div ref={headingRef} className="text-center mb-8 relative z-10">
-          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--accent)' }}>
+          <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--fog)' }}>
             What&apos;s different
           </p>
           <h2
-            className="font-[family-name:var(--font-display)] tracking-tight text-white"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
+            className="font-[family-name:var(--font-display)] tracking-tight text-white uppercase"
+            style={{ fontSize: 'clamp(1.6rem, 3.6vw, 2.7rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.97 }}
           >
             Not another fitness app
           </h2>
-          <p className="text-white/40 mt-2 text-sm">You&apos;ve tried the rest. Here&apos;s what&apos;s different.</p>
+          <p className="text-[15px] leading-[1.7] mt-2" style={{ color: 'var(--fog)' }}>You&apos;ve tried the rest. Here&apos;s what&apos;s different.</p>
         </div>
 
         {/* Column headers */}
