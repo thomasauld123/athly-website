@@ -28,7 +28,7 @@ function LogoItem({ name, src }: { name: string; src: string }) {
         alt={name}
         width={140}
         height={56}
-        className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+        className="h-8 md:h-10 w-auto object-contain grayscale"
         draggable={false}
       />
     </div>
