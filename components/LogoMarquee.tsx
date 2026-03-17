@@ -9,15 +9,15 @@ gsap.registerPlugin(ScrollTrigger)
 
 const logos = [
   { name: 'Logo 1', src: '/logo-1.svg' },
-  { name: 'Logo 2', src: '/logo-2.png' },
+  { name: 'Logo 2', src: '/logo-2.svg' },
   { name: 'Logo 3', src: '/logo-3.png' },
-  { name: 'Logo 4', src: '/logo-4.png' },
-  { name: 'Logo 5', src: '/logo-5.png' },
-  { name: 'Logo 6', src: '/logo-6.jpg' },
-  { name: 'Logo 7', src: '/logo-7.jpg' },
+  { name: 'Logo 4', src: '/logo-4.svg' },
+  { name: 'Logo 5', src: '/logo-5.svg' },
+  { name: 'Logo 6', src: '/logo-6.webp' },
+  { name: 'Logo 7', src: '/logo-7.svg' },
   { name: 'Logo 8', src: '/logo-8.svg' },
   { name: 'Logo 9', src: '/logo-9.png' },
-  { name: 'Logo 10', src: '/logo-10.png' },
+  { name: 'Logo 10', src: '/logo-10.svg' },
 ]
 
 function LogoItem({ name, src }: { name: string; src: string }) {
