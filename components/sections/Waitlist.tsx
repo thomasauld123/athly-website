@@ -7,23 +7,26 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Container } from '@/components/ui/Container'
-import { appendWaitlistEntry } from '@/lib/storage'
 import { useToast } from '@/components/ui/use-toast'
 import { CheckCircle2 } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
 interface FormErrors {
+  name?: string
   sport?: string
   team?: string
   athlete?: string
   goal?: string
+  email?: string
 }
 
 export function Waitlist() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<FormErrors>({})
   const [form, setForm] = useState({
+    name: '',
     sport: '',
     team: '',
     athlete: '',
@@ -35,7 +38,6 @@ export function Waitlist() {
   const headingRef = useRef<HTMLDivElement>(null)
   const formWrapRef = useRef<HTMLDivElement>(null)
 
-  // GSAP entrance
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
@@ -45,58 +47,68 @@ export function Waitlist() {
         y: 22,
         duration: 0.7,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: 'top 85%',
-          once: true,
-        },
+        scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
       })
       gsap.from(formWrapRef.current, {
         opacity: 0,
         y: 30,
         duration: 0.8,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: formWrapRef.current,
-          start: 'top 82%',
-          once: true,
-        },
+        scrollTrigger: { trigger: formWrapRef.current, start: 'top 82%', once: true },
       })
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
-  /* ─── Form logic (unchanged) ─── */
   function validate(): boolean {
     const newErrors: FormErrors = {}
+    if (!form.name.trim()) newErrors.name = 'Enter your name.'
     if (!form.sport.trim()) newErrors.sport = 'Pick a sport.'
     if (!form.team.trim()) newErrors.team = 'Who do you follow?'
     if (!form.athlete.trim()) newErrors.athlete = "Name someone you'd want."
     if (!form.goal.trim()) newErrors.goal = "Tell us what you're working toward."
+    if (!form.email.trim()) newErrors.email = 'Enter your email.'
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!validate()) return
 
-    appendWaitlistEntry({
-      sport: form.sport.trim(),
-      team: form.team.trim(),
-      athlete: form.athlete.trim(),
-      goal: form.goal.trim(),
-      email: form.email.trim(),
-      createdAt: new Date().toISOString(),
-    })
+    setLoading(true)
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          sport: form.sport.trim(),
+          team: form.team.trim(),
+          athlete: form.athlete.trim(),
+          goal: form.goal.trim(),
+        }),
+      })
 
-    toast({ title: "You're on the list." })
-    setSubmitted(true)
+      if (!res.ok) {
+        const data = await res.json()
+        toast({ title: 'Something went wrong.', description: data.error ?? 'Please try again.' })
+        return
+      }
+
+      toast({ title: "You're on the list." })
+      setSubmitted(true)
+    } catch {
+      toast({ title: 'Something went wrong.', description: 'Check your connection and try again.' })
+    } finally {
+      setLoading(false)
+    }
   }
 
   function resetForm() {
-    setForm({ sport: '', team: '', athlete: '', goal: '', email: '' })
+    setForm({ name: '', sport: '', team: '', athlete: '', goal: '', email: '' })
     setErrors({})
     setSubmitted(false)
   }
@@ -110,7 +122,6 @@ export function Waitlist() {
 
   return (
     <section ref={sectionRef} id="waitlist" className="relative py-[var(--section-py)]">
-      {/* Radial accent glow */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
@@ -120,7 +131,6 @@ export function Waitlist() {
       />
 
       <Container className="max-w-[560px] relative z-10">
-        {/* Heading */}
         <div ref={headingRef} className="text-center mb-10">
           <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--fog)' }}>
             Early access
@@ -136,7 +146,6 @@ export function Waitlist() {
           </p>
         </div>
 
-        {/* Form / success (Framer Motion AnimatePresence preserved) */}
         <div ref={formWrapRef}>
           <AnimatePresence mode="wait">
             {submitted ? (
@@ -176,6 +185,19 @@ export function Waitlist() {
                 className="glass-surface rounded-2xl p-8 space-y-5 backdrop-blur-[32px]"
                 noValidate
               >
+                <div className="space-y-1.5">
+                  <label htmlFor="name" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
+                    Your name *
+                  </label>
+                  <Input
+                    id="name"
+                    placeholder="e.g. Alex Johnson"
+                    value={form.name}
+                    onChange={(e) => updateField('name', e.target.value)}
+                  />
+                  {errors.name && <p className="text-xs text-red-400">{errors.name}</p>}
+                </div>
+
                 <div className="space-y-1.5">
                   <label htmlFor="sport" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
                     Favourite sport *
@@ -232,7 +254,7 @@ export function Waitlist() {
 
                 <div className="space-y-1.5">
                   <label htmlFor="email" className="text-[11px] font-medium uppercase tracking-wider text-white/50">
-                    Email <span className="text-white/25">(optional, for invites)</span>
+                    Email *
                   </label>
                   <Input
                     id="email"
@@ -241,15 +263,17 @@ export function Waitlist() {
                     value={form.email}
                     onChange={(e) => updateField('email', e.target.value)}
                   />
+                  {errors.email && <p className="text-xs text-red-400">{errors.email}</p>}
                 </div>
 
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full border-0 text-black font-semibold hover:opacity-90"
+                  disabled={loading}
+                  className="w-full border-0 text-black font-semibold hover:opacity-90 disabled:opacity-50"
                   style={{ background: 'var(--accent)' }}
                 >
-                  Join the waitlist
+                  {loading ? 'Saving...' : 'Join the waitlist'}
                 </Button>
 
                 <p className="text-xs text-white/25 text-center">

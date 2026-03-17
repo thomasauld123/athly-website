@@ -1,4 +1,5 @@
 export interface WaitlistEntry {
+  name: string
   sport: string
   team: string
   athlete: string

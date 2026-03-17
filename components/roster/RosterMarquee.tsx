@@ -22,105 +22,87 @@ const athletes = [
   { sport: 'Athletics', credential: 'Commonwealth Games finalist' },
 ]
 
-const row1 = athletes.slice(0, 6)
-const row2 = athletes.slice(6, 12)
-
 export function RosterMarquee() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const headingRef = useRef<HTMLDivElement>(null)
-  const row1Ref = useRef<HTMLDivElement>(null)
-  const row2Ref = useRef<HTMLDivElement>(null)
-  const spotlightRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const statRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ paused: true, defaults: { ease: 'none' } })
-
-      tl.from(headingRef.current, { opacity: 0, y: 18, duration: 0.3, ease: 'power3.out' }, 0)
-      tl.from(spotlightRef.current, { opacity: 0, scale: 0.5, duration: 0.4, ease: 'power3.out' }, 0)
-
-      // Opposing scroll-driven movement
-      tl.fromTo(row1Ref.current, { x: 60 }, { x: -280, duration: 1 }, 0.05)
-      tl.fromTo(row2Ref.current, { x: -60 }, { x: 280, duration: 1 }, 0.05)
-
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1.5,
-        animation: tl,
+      gsap.from(headingRef.current, {
+        opacity: 0,
+        y: 18,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: headingRef.current, start: 'top 85%', once: true },
       })
-    }, containerRef)
+      gsap.from(gridRef.current, {
+        opacity: 0,
+        y: 24,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true },
+      })
+      gsap.from(statRef.current, {
+        opacity: 0,
+        y: 12,
+        duration: 0.6,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: statRef.current, start: 'top 88%', once: true },
+      })
+    }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
   return (
-    /* 450vh: 100vh visible + 350vh scroll space */
-    <div ref={containerRef} id="athletes" style={{ position: 'relative', height: '450vh' }}>
+    <section ref={sectionRef} id="athletes" className="relative py-[var(--section-py)]">
+      {/* Subtle glow */}
       <div
-        style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}
-        className="relative flex flex-col items-center justify-center bg-[#060D18]"
-      >
-        {/* Center spotlight */}
-        <div
-          ref={spotlightRef}
-          aria-hidden="true"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%)' }}
-        />
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,212,255,0.03) 0%, transparent 70%)',
+        }}
+      />
 
-        <span className="scene-label">ROSTER — 06</span>
-
+      <div className="mx-auto w-full max-w-[var(--container-max)] px-6 md:px-8 relative z-10">
         {/* Heading */}
-        <div ref={headingRef} className="text-center mb-12 px-6 relative z-10">
-          <p className="font-[family-name:var(--font-mono)] text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: 'var(--fog)' }}>
-            Launch roster
-          </p>
+        <div ref={headingRef} className="text-center mb-12">
+          <span className="scene-label">ROSTER — 06</span>
           <h2
-            className="font-[family-name:var(--font-display)] tracking-tight text-white uppercase"
+            className="font-[family-name:var(--font-display)] tracking-tight text-white uppercase mt-3"
             style={{ fontSize: 'clamp(1.6rem, 3.6vw, 2.7rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.97 }}
           >
-            Launch roster
+            The Roster
           </h2>
-          <p className="text-[15px] leading-[1.7] mt-2 max-w-sm mx-auto" style={{ color: 'var(--fog)' }}>
+          <p className="text-[15px] leading-[1.7] mt-3 max-w-sm mx-auto" style={{ color: 'var(--fog)' }}>
             Names stay hidden until launch. Waitlist members influence who drops first.
           </p>
         </div>
 
-        {/* Rows */}
+        {/* Grid */}
         <div
-          className="w-full relative z-10"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
-          }}
+          ref={gridRef}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
         >
-          {/* Row 1 — moves left */}
-          <div
-            ref={row1Ref}
-            className="flex gap-4 mb-4 justify-center"
-            style={{ willChange: 'transform' }}
-          >
-            {[...row1, ...row1].map((a, i) => (
-              <RosterCard key={`1-${i}`} {...a} />
-            ))}
-          </div>
-
-          {/* Row 2 — moves right, slight scale for depth */}
-          <div
-            ref={row2Ref}
-            className="flex gap-4 justify-center"
-            style={{ transform: 'scale(0.92)', opacity: 0.8, willChange: 'transform' }}
-          >
-            {[...row2, ...row2].map((a, i) => (
-              <RosterCard key={`2-${i}`} {...a} />
-            ))}
-          </div>
+          {athletes.map((a, i) => (
+            <RosterCard key={i} sport={a.sport} credential={a.credential} />
+          ))}
         </div>
+
+        {/* Stat line */}
+        <p
+          ref={statRef}
+          className="text-center mt-8 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.18em]"
+          style={{ color: 'var(--fog)' }}
+        >
+          12 athletes · 8 sports · Announcing soon
+        </p>
       </div>
-    </div>
+    </section>
   )
 }
